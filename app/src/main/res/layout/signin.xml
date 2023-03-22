@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/lavander"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/welcomeback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50sp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/welcomeback"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:drawablePadding="16dp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        android:padding="8dp"
+        android:textColorHint="@color/purple_200" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:drawablePadding="16dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="8dp"
+        android:layout_marginTop="10sp"
+        android:textColorHint="@color/purple_200" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="90dp"
+        android:layout_height="78dp"
+        android:layout_gravity="end"
+        app:srcCompat="@drawable/btn_login"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/newuser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="50sp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/newuser"
+                android:textAlignment="center"
+                android:textColor="@color/blue"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
