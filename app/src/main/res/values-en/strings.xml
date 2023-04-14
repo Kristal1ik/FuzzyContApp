@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">FuzzyContApp</string>
-    <string name="e_mail">E-mail</string>
+    <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="again_password">Confirm password</string>
     <string name="signup">Sign up</string>
+    <string name="login">Login</string>
 </resources>
