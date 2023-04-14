@@ -25,35 +25,38 @@
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:id="@+id/email"
+                android:id="@+id/username_signup"
                 android:layout_gravity="center"
-                android:hint="@string/e_mail"
+                android:hint="@string/username"
                 android:layout_marginTop="30dp"
-                android:drawableStart="@drawable/email_img"
+                android:drawableStart="@drawable/person"
                 android:padding="8dp"
+                android:inputType="textPersonName"
                 android:background="@drawable/edit"
                 android:drawablePadding="8dp"/>
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:id="@+id/password"
+                android:id="@+id/password_signup"
                 android:layout_gravity="center"
                 android:hint="@string/password"
                 android:layout_marginTop="20dp"
                 android:drawableStart="@drawable/lock_img"
                 android:padding="8dp"
                 android:drawablePadding="8dp"
+                android:inputType="textPassword"
                 android:background="@drawable/edit"/>
             <EditText
                 android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:id="@+id/again_password"
+                android:id="@+id/again_password_signup"
                 android:layout_gravity="center"
                 android:hint="@string/again_password"
                 android:layout_marginTop="20dp"
                 android:drawableStart="@drawable/lock_img"
                 android:padding="8dp"
                 android:drawablePadding="8dp"
+                android:inputType="textPassword"
                 android:background="@drawable/edit"/>
             <Button
                 android:layout_width="300dp"
@@ -62,7 +65,7 @@
                 android:text="@string/signup"
                 android:backgroundTint="@color/lav1"
                 android:layout_gravity="center"
-                android:id="@+id/login_button"
+                android:id="@+id/signup_btn"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:cornerRadius="30dp"/>
