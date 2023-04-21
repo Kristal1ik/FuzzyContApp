@@ -14,8 +14,11 @@ import com.google.android.material.tabs.TabLayout;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
@@ -53,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         mainAdapter = new MainAdapter(fragmentManager, getLifecycle());
         viewPager2.setAdapter(mainAdapter);
-
     }
-
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -64,21 +65,15 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     static class MyThread implements Runnable{
-        private volatile String msg = "";
         public static Socket sock;
-        DataOutputStream output;
-
+        public static PrintWriter output;
+        public static BufferedReader input;
         @Override
         public void run() {
             try{
                 sock = new Socket("192.168.0.17", 22345);
-                output = new DataOutputStream(sock.getOutputStream());
-                output.writeUTF(msg);
-                output.flush();
-                output.close();
-
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
+                input = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
+                output = new PrintWriter(sock.getOutputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
