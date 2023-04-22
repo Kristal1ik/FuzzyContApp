@@ -5,5 +5,8 @@
     <string name="again_password">Confirm password</string>
     <string name="signup">Sign up</string>
     <string name="login">Login</string>
+    <string name="logout">Выход</string>
+    <string name="code">Код подтверждения</string>
+    <string name="ok">ОК</string>
 
 </resources>

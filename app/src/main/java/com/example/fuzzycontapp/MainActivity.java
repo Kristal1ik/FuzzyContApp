@@ -12,12 +12,10 @@ import android.widget.Button;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             try{
-                sock = new Socket("192.168.0.17", 22345);
+                sock = new Socket("46.242.119.144", 22345);
                 input = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
                 output = new PrintWriter(sock.getOutputStream());
             } catch (IOException e) {

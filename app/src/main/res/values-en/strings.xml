@@ -5,4 +5,8 @@
     <string name="again_password">Confirm password</string>
     <string name="signup">Sign up</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="code">Permission code</string>
+    <string name="ok">OK</string>
+
 </resources>
