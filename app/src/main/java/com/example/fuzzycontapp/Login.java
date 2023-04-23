@@ -2,6 +2,7 @@ package com.example.fuzzycontapp;
 
 
 
+import static com.example.fuzzycontapp.MainActivity.MyThread.charb;
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
 
@@ -29,7 +30,6 @@ import java.nio.CharBuffer;
 public class Login extends Fragment {
     FragmentLoginBinding binding;
 
-    CharBuffer charb = CharBuffer.allocate(10000);
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,12 +67,18 @@ public class MainActivity extends AppCompatActivity {
         public static Socket sock;
         public static PrintWriter output;
         public static BufferedReader input;
+        public static   CharBuffer charb;
+
         @Override
         public void run() {
             try{
                 sock = new Socket("46.242.119.144", 22345);
+                sock.setSendBufferSize(100000);
+                sock.setReceiveBufferSize(100000);
                 input = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
                 output = new PrintWriter(sock.getOutputStream());
+                charb = CharBuffer.allocate(100000);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
