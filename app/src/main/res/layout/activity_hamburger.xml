@@ -13,12 +13,11 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/person" />
+        android:id="@+id/user_img"
+        android:src="@drawable/person"
+        android:clickable="true"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/settings" />
+
 
     <TextView
         android:layout_width="wrap_content"

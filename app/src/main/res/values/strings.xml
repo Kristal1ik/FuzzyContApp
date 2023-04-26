@@ -8,7 +8,13 @@
     <string name="logout">Выход</string>
     <string name="code">Код подтверждения</string>
     <string name="ok">ОК</string>
+    <string name="rules">Rules</string>
     <string name="email">E-mail</string>
-    <string name="rules">Правил</string>
+    <string name="theory">Theory</string>
+    <string name="read">Read</string>
+    <string name="categories">Categories</string>
+    <string name="home">Home</string>
+    <string name="my_rules">My Rules</string>
+    <string name="profile">Profile</string>
 
 </resources>
