@@ -82,7 +82,7 @@ public class SignUp extends Fragment {
                                     e.printStackTrace();
                                 }
                                 System.out.println(request);
-                                output.print(request);
+                                output.println(request);
                                 output.flush();
                                 try {
                                     while(!input.ready());
@@ -114,7 +114,7 @@ public class SignUp extends Fragment {
                             e.printStackTrace();
                         }
                         System.out.println(request);
-                        output.print(request);
+                        output.println(request);
                         output.flush();
                         try {
                             while(!input.ready());
