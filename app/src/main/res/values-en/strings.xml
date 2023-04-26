@@ -10,6 +10,11 @@
     <string name="ok">OK</string>
     <string name="email">E-mail</string>
     <string name="rules">Rules</string>
-
+    <string name="theory">Теория</string>
+    <string name="read">Читать</string>
+    <string name="categories">Категории</string>
+    <string name="home">Дом</string>
+    <string name="my_rules">Мои правила</string>
+    <string name="profile">Профиль</string>
 
 </resources>
