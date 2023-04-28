@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     TextView name;
+    ImageView user_img;
 
 
     @Override
@@ -41,6 +43,14 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         View headerLayout = navigationView.getHeaderView(0);
         name = headerLayout.findViewById(R.id.user);
+        user_img = headerLayout.findViewById(R.id.user_img);
+        user_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, UserPage.class);
+                startActivity(intent);
+            }
+        });
         name.setText(Global.USERNAME);
         drawerLayout = findViewById(R.id.drawer_layout);
 
