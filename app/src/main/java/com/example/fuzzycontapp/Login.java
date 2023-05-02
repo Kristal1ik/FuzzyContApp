@@ -24,11 +24,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.nio.CharBuffer;
+
 
 
 public class Login extends Fragment {
     FragmentLoginBinding binding;
+    public static String USERNAME = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -50,10 +51,9 @@ public class Login extends Fragment {
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                charb.clear();
                 String login = binding.usernameLogin.getText().toString();
                 String password = binding.passwordLogin.getText().toString();
-                binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
+                String s = "";
 
                 int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
                 if (SDK_INT > 8)
@@ -70,30 +70,35 @@ public class Login extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    System.out.println(request);
-                    output.print(request);
+
+                    output.println(request);
                     output.flush();
                     try {
                         while(!input.ready());
-                            System.out.println("assd");
-                            System.out.println(input.read(charb));
-                            System.out.println(new String (charb.array()));
+                            s = input.readLine();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
                 try {
-                    if (new JSONObject(new String (charb.array())).get("Status").equals("OK"))
+                    if (new JSONObject(s).get("Status").equals("OK"))
                     {
+                        System.out.println(login);
+                        Global.USERNAME = login;
+                        Global.EMAIL = (String) new JSONObject(s).get("Email");
+                        System.out.println(Global.EMAIL);
+                        System.out.println("fs"+USERNAME);
                         Intent intent = new Intent(v.getContext(), MenuActivity.class);
                         startActivity(intent);
                     }
                     else{
+                        binding.usernameLogin.setText(""); binding.passwordLogin.setText("");
                         System.out.println("wrong password");
 
                     }                } catch (JSONException e) {
                     e.printStackTrace();
-                } }
+                }
+        }
         });
     }
 
