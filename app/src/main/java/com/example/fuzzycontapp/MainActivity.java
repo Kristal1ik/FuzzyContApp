@@ -1,10 +1,15 @@
 package com.example.fuzzycontapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,9 +23,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
+    Button button, button2;
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     MainAdapter mainAdapter;
@@ -35,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         viewPager2 = (ViewPager2) findViewById(R.id.view_pager);
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
         tabLayout.addTab(tabLayout.newTab().setText("Signup"));
+        button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PageRule.class);
+                startActivity(intent);
+            }
+        });
 
         button.setOnClickListener(listener);
         myThread = new MyThread();
@@ -67,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
         public static Socket sock;
         public static PrintWriter output;
         public static BufferedReader input;
-        public static   CharBuffer charb;
+        public static CharBuffer charb;
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void run() {
             try{
@@ -78,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
                 input = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
                 output = new PrintWriter(sock.getOutputStream());
                 charb = CharBuffer.allocate(100000);
+
+//                Global.IMG_BITMAP = Bitmap;
 
             } catch (IOException e) {
                 e.printStackTrace();
