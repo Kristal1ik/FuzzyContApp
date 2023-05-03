@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/pend1"
+            android:icon="@drawable/person"
+            android:title="1"/>
+
+        <item
+            android:id="@+id/pend2"
+            android:icon="@drawable/person"
+            android:title="2"/>
+
+        <item
+            android:id="@+id/pend3"
+            android:icon="@drawable/person"
+            android:title="3"/>
+
+        <item
+            android:id="@+id/pend4"
+            android:icon="@drawable/person"
+            android:title="4"/>
+
+    </group>
+    <item
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/pend5"
+                android:icon="@drawable/settings"
+                android:title="5"/>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/person"
+                android:title="Logout"/>
+        </menu>
+
+    </item>
+
+</menu>
