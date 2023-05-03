@@ -8,5 +8,8 @@
     <string name="logout">Logout</string>
     <string name="code">Permission code</string>
     <string name="ok">OK</string>
+    <string name="email">E-mail</string>
+    <string name="rules">Rules</string>
+
 
 </resources>

@@ -8,5 +8,7 @@
     <string name="logout">Выход</string>
     <string name="code">Код подтверждения</string>
     <string name="ok">ОК</string>
+    <string name="email">E-mail</string>
+    <string name="rules">Правил</string>
 
 </resources>
