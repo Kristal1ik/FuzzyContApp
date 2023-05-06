@@ -35,48 +35,48 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
 
-        button = findViewById(R.id.button);
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        viewPager2 = (ViewPager2) findViewById(R.id.view_pager);
-        tabLayout.addTab(tabLayout.newTab().setText("Login"));
-        tabLayout.addTab(tabLayout.newTab().setText("Signup"));
-        button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PageRule.class);
-                startActivity(intent);
-            }
-        });
-
-        button.setOnClickListener(listener);
-        myThread = new MyThread();
-        new Thread(myThread).start();
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-            }
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-            }
-        });
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        mainAdapter = new MainAdapter(fragmentManager, getLifecycle());
-        viewPager2.setAdapter(mainAdapter);
-    }
-    View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, Accelerometer.class);
-            startActivity(intent);
-        }
+//        button = findViewById(R.id.button);
+//        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+//        viewPager2 = (ViewPager2) findViewById(R.id.view_pager);
+//        tabLayout.addTab(tabLayout.newTab().setText("Login"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Signup"));
+//        button2 = findViewById(R.id.button2);
+//        button2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, PageRule.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        button.setOnClickListener(listener);
+//        myThread = new MyThread();
+//        new Thread(myThread).start();
+//        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                viewPager2.setCurrentItem(tab.getPosition());
+//            }
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//            }
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//            }
+//        });
+//
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        mainAdapter = new MainAdapter(fragmentManager, getLifecycle());
+//        viewPager2.setAdapter(mainAdapter);
+//    }
+//    View.OnClickListener listener = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Intent intent = new Intent(MainActivity.this, Accelerometer.class);
+//            startActivity(intent);
+//        }
     };
     static class MyThread implements Runnable{
         public static Socket sock;
