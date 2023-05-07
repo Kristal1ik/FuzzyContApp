@@ -28,10 +28,22 @@
                 android:id="@+id/username_signup"
                 android:layout_gravity="center"
                 android:hint="@string/username"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="0dp"
                 android:drawableStart="@drawable/person"
                 android:padding="8dp"
                 android:inputType="textPersonName"
+                android:background="@drawable/edit"
+                android:drawablePadding="8dp"/>
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:id="@+id/email_signup"
+                android:layout_gravity="center"
+                android:hint="E-mail"
+                android:layout_marginTop="30dp"
+                android:drawableStart="@drawable/email_img"
+                android:padding="8dp"
+                android:inputType="textEmailAddress"
                 android:background="@drawable/edit"
                 android:drawablePadding="8dp"/>
             <EditText
