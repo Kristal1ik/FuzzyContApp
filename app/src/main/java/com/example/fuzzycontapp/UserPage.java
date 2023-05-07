@@ -1,6 +1,6 @@
 package com.example.fuzzycontapp;
 
-import static com.example.fuzzycontapp.Global.*;
+import static com.example.fuzzycontapp.Indiv.Global.*;
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
 
@@ -8,16 +8,17 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.provider.MediaStore;
 import android.view.View;
 
 import com.example.fuzzycontapp.databinding.ActivityUserPageBinding;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,21 +39,27 @@ public class UserPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_page);
         binding = ActivityUserPageBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         binding.username.setText(USERNAME);
         binding.email.setText(EMAIL);
-//        binding.profileImg.setIma9geBitmap(myBitmap);
+        binding.profileImg.setImageBitmap(IMG);
 
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserPage.this, MenuActivity.class);
+                Intent intent = new Intent(UserPage.this, HomePageActivity.class);
                 startActivity(intent);
             }
-        });}
+        });
+        binding.profileImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImagePicker.with(UserPage.this).crop().compress(1024).maxResultSize(1080, 1080).start();
+            }
+        });
+    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
@@ -62,12 +69,6 @@ public class UserPage extends AppCompatActivity {
         CharBuffer charb = CharBuffer.allocate(10000);
         byte[] img0 = new byte[0];
         Uri uri = Objects.requireNonNull(data).getData();
-        binding.profileImg.setImageURI(uri);
-        try {
-            Files.copy(Paths.get(uri.getPath()), Paths.get(IMG), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         try {
             img0 = Files.readAllBytes(Paths.get(uri.getPath()));
         } catch (IOException e) {
@@ -79,7 +80,6 @@ public class UserPage extends AppCompatActivity {
             if ((img.length() % 4096) != 0) {
                 range = img.length() / 4096 + 1;
             }
-
             int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
             if (SDK_INT > 8) {
                 StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -108,6 +108,13 @@ public class UserPage extends AppCompatActivity {
             }
             send_packs(img, range);
         }
+        try {
+            IMG = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        binding.profileImg.setImageBitmap(IMG);
+
     }
 
 
