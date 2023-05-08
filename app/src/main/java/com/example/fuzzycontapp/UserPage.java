@@ -1,5 +1,6 @@
 package com.example.fuzzycontapp;
 
+
 import static com.example.fuzzycontapp.Indiv.Global.*;
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import java.nio.CharBuffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Objects;
 
@@ -42,10 +45,34 @@ public class UserPage extends AppCompatActivity {
         binding = ActivityUserPageBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        try {
+            int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
+            if (SDK_INT > 8)
+            {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                        .permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+                JSONObject request = new JSONObject();
+                try {
+                    request.put("Command", "get_profile_info");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                output.println(request);
+                output.flush();
+            while(!input.ready());
+            String s = input.readLine();
+            String myRules = Integer.toString(new JSONObject(s).getInt("myRules"));
+            String savedRules = Integer.toString(new JSONObject(s).getInt("savedRules"));
+            binding.rules.setText(myRules);
+            binding.sRules.setText(savedRules);
+
+            }
+
         binding.username.setText(USERNAME);
         binding.email.setText(EMAIL);
         binding.profileImg.setImageBitmap(IMG);
-
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,8 +84,14 @@ public class UserPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ImagePicker.with(UserPage.this).crop().compress(1024).maxResultSize(1080, 1080).start();
+
             }
         });
+    } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
