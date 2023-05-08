@@ -1,4 +1,4 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.fuzzycontapp.UserPage;
 import com.example.fuzzycontapp.databinding.FragmentPendulum2Binding;
 import com.example.fuzzycontapp.databinding.FragmentPendulum5Binding;
 import com.github.dhaval2404.imagepicker.ImagePicker;
