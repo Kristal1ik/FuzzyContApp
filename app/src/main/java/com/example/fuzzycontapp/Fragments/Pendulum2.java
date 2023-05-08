@@ -1,4 +1,4 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Fragments;
 
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
