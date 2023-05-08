@@ -1,10 +1,11 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Fragments;
 
+import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.id;
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
-import static com.example.fuzzycontapp.Pendulum1.ThreadSetBase.base_rules;
-import static com.example.fuzzycontapp.Pendulum1.ThreadSetBase.bmp;
-import static com.example.fuzzycontapp.Pendulum1.ThreadSetBase.usernames;
+import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.base_rules;
+import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.bmp;
+import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.usernames;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +22,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fuzzycontapp.Adapters.Rules_Adapter;
+import com.example.fuzzycontapp.MainActivity;
+import com.example.fuzzycontapp.PageRule;
+import com.example.fuzzycontapp.PageRuleInterface;
+import com.example.fuzzycontapp.Rule_model;
 import com.example.fuzzycontapp.databinding.FragmentPendulum1Binding;
 
 import org.json.JSONException;
@@ -31,7 +37,7 @@ import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.Base64;
 
-public class Pendulum1 extends Fragment implements PageRuleInterface{
+public class Pendulum1 extends Fragment implements PageRuleInterface {
     FragmentPendulum1Binding binding;
     public static ArrayList<Rule_model> rule_models = new ArrayList<>();
     @Override
@@ -60,38 +66,46 @@ public class Pendulum1 extends Fragment implements PageRuleInterface{
 
 
         Rules_Adapter rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
-        System.out.println("jhg");
         binding.recyclerViewRules.setAdapter(rules_adapter);
         binding.recyclerViewRules.setLayoutManager(new LinearLayoutManager(this.getContext()));}
 
     @Override
     public void onItemClick(int position) {
+//        ThreadSendHeart threadSendHeart= new ThreadSendHeart();
+//        new Thread(threadSendHeart).start();
         Intent intent = new Intent(this.getContext(), PageRule.class);
-
         intent.putExtra("NAME", rule_models.get(position).getName());
-//        intent.putExtra("IMGS", rule_models.get(position).getImgs());
         intent.putExtra("RULES", rule_models.get(position).getRules());
         intent.putExtra("POS", position);
-
+        send_heart(rule_models.get(position).getId());
         startActivity(intent);
     }
 
-
+//    static class ThreadSendHeart extends Thread {
+//
+//        @Override
+//        public void run() {
+//            send_heart();
+//        }
+//    }
     static class ThreadSetBase extends Thread {
         public static ArrayList<ArrayList<Bitmap>> bmp = new ArrayList<ArrayList<Bitmap>>();
         public static ArrayList<String> usernames = new ArrayList<>();
         public static ArrayList<String> base_rules = new ArrayList<>();
+        public static ArrayList<Integer> id = new ArrayList<>();
+
         @Override
         public void run() {
             collect_img();
             setRule_models();
         }
     }
+
     static private void setRule_models(){
         System.out.println(bmp.size());
         for (int i = 0; i<usernames.size(); i++){
             System.out.println(i);
-            rule_models.add(new Rule_model(usernames.get(i), bmp.get(i), base_rules.get(i)));
+            rule_models.add(new Rule_model(usernames.get(i), bmp.get(i), base_rules.get(i), id.get(i)));
         }
     }
     static private ArrayList<ArrayList<Bitmap>> collect_img(){
@@ -127,6 +141,7 @@ public class Pendulum1 extends Fragment implements PageRuleInterface{
                     System.out.println(s3);
                     usernames.add(new JSONObject(s3).getString("Username"));
                     base_rules.add(new JSONObject(s3).getString("Base"));
+                    id.add(new JSONObject(s3).getInt("RuleID"));
                     for (int j=0; j < 3; j++){
                         while(!input.ready());
                         String s2 = input.readLine();
@@ -142,7 +157,7 @@ public class Pendulum1 extends Fragment implements PageRuleInterface{
             }}
         return bmp;
     }
-    static private Bitmap conv_bitmap(String str_img){
+    static public Bitmap conv_bitmap(String str_img){
 
         byte[] img_byte = new byte[0];
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -151,7 +166,7 @@ public class Pendulum1 extends Fragment implements PageRuleInterface{
         return BitmapFactory.decodeByteArray(img_byte, 0, img_byte.length);
 
     }
-    static private String get_img(String img){
+    static public String get_img(String img){
         System.out.println("AAAAAAAAAAAAAAAAAAAAA");
         JSONObject jsonObject;
         StringBuilder enc_img = new StringBuilder();
@@ -174,7 +189,27 @@ public class Pendulum1 extends Fragment implements PageRuleInterface{
         }
         return enc_img.toString();
     }
-}
+
+    public static void send_heart(int ID){
+        int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
+        if (SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            JSONObject request = new JSONObject();
+            try {
+                request.put("Command", "save_rule");
+                request.put("RuleID", ID);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            output.println(request);
+            output.flush();
+
+        }
+}}
 //package com.example.fuzzycontapp;
 //
 //import static com.example.fuzzycontapp.MainActivity.MyThread.charb;
