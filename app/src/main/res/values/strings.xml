@@ -8,13 +8,18 @@
     <string name="logout">Выход</string>
     <string name="code">Код подтверждения</string>
     <string name="ok">ОК</string>
-    <string name="rules">Rules</string>
+    <string name="rules">Правила</string>
     <string name="email">E-mail</string>
-    <string name="theory">Theory</string>
-    <string name="read">Read</string>
-    <string name="categories">Categories</string>
-    <string name="home">Home</string>
-    <string name="my_rules">My Rules</string>
-    <string name="profile">Profile</string>
-
+    <string name="theory">Теория</string>
+    <string name="read">Читать</string>
+    <string name="categories">Категории</string>
+    <string name="home">Дом</string>
+    <string name="my_rules">Мои правила</string>
+    <string name="profile">Профиль</string>
+    <string-array name="names">
+        <item>Акселерометр</item>
+        <item>Оптимизация</item>
+        <item>Физ. модель</item>
+        <item>Мат. модель</item>
+    </string-array>
 </resources>
