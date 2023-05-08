@@ -1,4 +1,4 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.Ref;
+import com.example.fuzzycontapp.PageRuleInterface;
+import com.example.fuzzycontapp.R;
+import com.example.fuzzycontapp.Rule_model;
+
 import java.util.ArrayList;
 
 
@@ -38,7 +41,6 @@ public class Rules_Adapter extends RecyclerView.Adapter<Rules_Adapter.Rules_View
         // Присваивание значений для каждой из строк по мере их появления на экране
         holder.textView_name.setText(rule_models.get(position).getName());
         holder.imageView_img.setImageBitmap(rule_models.get(position).getImgs().get(0));
-        System.out.println("qwertyuiop[");
     }
 
     @Override
