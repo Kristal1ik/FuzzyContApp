@@ -9,12 +9,24 @@ public class Rule_model {
     Bitmap image;
     ArrayList<Bitmap> imgs;
     String rules;
+    Integer id;
 
 
-    public Rule_model(String name, ArrayList<Bitmap> imgs, String rules) {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
+
+    public Rule_model(String name, ArrayList<Bitmap> imgs, String rules, Integer id) {
         this.name = name;
         this.imgs = imgs;
         this.rules = rules;
+        this.id = id;
     }
 
 
