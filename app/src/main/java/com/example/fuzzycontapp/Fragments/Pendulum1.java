@@ -1,11 +1,8 @@
 package com.example.fuzzycontapp.Fragments;
 
-import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.id;
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
-import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.base_rules;
-import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.bmp;
-import static com.example.fuzzycontapp.Fragments.Pendulum1.ThreadSetBase.usernames;
+
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,10 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fuzzycontapp.Adapters.Rules_Adapter;
-import com.example.fuzzycontapp.MainActivity;
-import com.example.fuzzycontapp.PageRule;
+import com.example.fuzzycontapp.Activities.PageRule;
 import com.example.fuzzycontapp.PageRuleInterface;
-import com.example.fuzzycontapp.Rule_model;
+import com.example.fuzzycontapp.Indiv.Rule_model;
 import com.example.fuzzycontapp.databinding.FragmentPendulum1Binding;
 
 import org.json.JSONException;
@@ -38,8 +34,19 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 public class Pendulum1 extends Fragment implements PageRuleInterface {
+    static class ThreadSetBase extends Thread {
+        @Override
+        public void run() {
+            collect_img();
+            setRule_models();
+        }
+    }
     FragmentPendulum1Binding binding;
-    public static ArrayList<Rule_model> rule_models = new ArrayList<>();
+    static ArrayList<ArrayList<Bitmap>> bmp = new ArrayList<ArrayList<Bitmap>>();
+    static ArrayList<String> usernames = new ArrayList<>();
+    static ArrayList<String> base_rules = new ArrayList<>();
+    static ArrayList<Integer> id = new ArrayList<>();
+    public static ArrayList<Rule_model> rule_models;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,30 +56,24 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentPendulum1Binding.inflate(inflater, container, false);
+        rule_models = new ArrayList<>();
+        bmp = new ArrayList<ArrayList<Bitmap>>();
+        usernames = new ArrayList<>();
+        base_rules = new ArrayList<>();
+        id = new ArrayList<>();
+        System.out.println(rule_models.size() + "rule_models");
+        collect_img();
+        setRule_models();
+        System.out.println(rule_models.size() + "rule_models");
+
+        Rules_Adapter rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
+        binding.recyclerViewRules.setAdapter(rules_adapter);
+        binding.recyclerViewRules.setLayoutManager(new LinearLayoutManager(this.getContext()));
         return binding.getRoot();
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        ThreadSetBase threadSetBase = new ThreadSetBase();
-        threadSetBase.start();
-        try {
-            threadSetBase.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-        Rules_Adapter rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
-        binding.recyclerViewRules.setAdapter(rules_adapter);
-        binding.recyclerViewRules.setLayoutManager(new LinearLayoutManager(this.getContext()));}
-
-    @Override
     public void onItemClick(int position) {
-//        ThreadSendHeart threadSendHeart= new ThreadSendHeart();
-//        new Thread(threadSendHeart).start();
         Intent intent = new Intent(this.getContext(), PageRule.class);
         intent.putExtra("NAME", rule_models.get(position).getName());
         intent.putExtra("RULES", rule_models.get(position).getRules());
@@ -88,18 +89,7 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
 //            send_heart();
 //        }
 //    }
-    static class ThreadSetBase extends Thread {
-        public static ArrayList<ArrayList<Bitmap>> bmp = new ArrayList<ArrayList<Bitmap>>();
-        public static ArrayList<String> usernames = new ArrayList<>();
-        public static ArrayList<String> base_rules = new ArrayList<>();
-        public static ArrayList<Integer> id = new ArrayList<>();
 
-        @Override
-        public void run() {
-            collect_img();
-            setRule_models();
-        }
-    }
 
     static private void setRule_models(){
         System.out.println(bmp.size());
@@ -209,7 +199,8 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
             output.flush();
 
         }
-}}
+}
+}
 //package com.example.fuzzycontapp;
 //
 //import static com.example.fuzzycontapp.MainActivity.MyThread.charb;
