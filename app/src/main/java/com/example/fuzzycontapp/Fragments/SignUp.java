@@ -1,4 +1,4 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Fragments;
 
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
@@ -14,11 +14,13 @@ import androidx.fragment.app.Fragment;
 
 import android.os.StrictMode;
 import android.text.InputType;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.databinding.FragmentSignupBinding;
 
 import org.json.JSONException;
@@ -50,12 +52,32 @@ public class SignUp extends Fragment {
         binding.signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int n = 0;
                 charb.clear();
                 String username = binding.usernameSignup.getText().toString();
                 String email = binding.emailSignup.getText().toString();
                 String password = binding.passwordSignup.getText().toString();
                 String confirm = binding.againPasswordSignup.getText().toString();
-                if (password.equals(confirm)){
+                binding.usernameSignup.setBackgroundResource(R.drawable.edit);
+                binding.passwordSignup.setBackgroundResource(R.drawable.edit);
+                binding.againPasswordSignup.setBackgroundResource(R.drawable.edit);
+                binding.emailSignup.setBackgroundResource(R.drawable.edit);
+                if (!isEmailValid(email)){
+                    binding.emailSignup.setBackgroundResource(R.drawable.pg_red);
+                    n += 1;
+                }
+
+                if (!isLoginValid(username)){
+                    binding.usernameSignup.setBackgroundResource(R.drawable.pg_red);
+                    n += 1;
+                }
+                if ((!isPasswordValid(password)) || (!isPasswordValid(confirm))){
+                    binding.passwordSignup.setBackgroundResource(R.drawable.pg_red);
+                    binding.againPasswordSignup.setBackgroundResource(R.drawable.pg_red);
+                    n += 1;
+                }
+
+                if (n == 0){
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
                     alertDialog.setTitle(R.string.code);
                     final EditText confirm_email = new EditText(v.getContext());
@@ -65,6 +87,7 @@ public class SignUp extends Fragment {
                     alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
                             charb.clear();
                             String confirm_code = confirm_email.getText().toString();
                             int SDK_INT = android.os.Build.VERSION.SDK_INT;
@@ -81,7 +104,6 @@ public class SignUp extends Fragment {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                System.out.println(request);
                                 output.println(request);
                                 output.flush();
                                 try {
@@ -127,9 +149,18 @@ public class SignUp extends Fragment {
                     }
                 }
                 binding.usernameSignup.setText(""); binding.passwordSignup.setText(""); binding.againPasswordSignup.setText("");
-
+                binding.emailSignup.setText("");
 
             }
         });
+    }
+    public boolean isEmailValid(String email){
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+    public boolean isLoginValid(String login){
+        return login.length() >= 6;
+    }
+    public boolean isPasswordValid(String password){
+        return password.length() >= 4;
     }
 }
