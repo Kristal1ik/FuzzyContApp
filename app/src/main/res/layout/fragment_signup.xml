@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignUp">
+    tools:context=".Fragments.SignUp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,12 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp"
             android:padding="20dp">
             
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="16dp"
                 android:src="@mipmap/ic_launcher_round"
                 android:layout_gravity="center"/>
             <EditText
@@ -28,8 +29,7 @@
                 android:id="@+id/username_signup"
                 android:layout_gravity="center"
                 android:hint="@string/username"
-                android:layout_marginTop="0dp"
-                android:drawableStart="@drawable/person"
+                android:drawableStart="@drawable/person2"
                 android:padding="8dp"
                 android:inputType="textPersonName"
                 android:background="@drawable/edit"
@@ -40,7 +40,7 @@
                 android:id="@+id/email_signup"
                 android:layout_gravity="center"
                 android:hint="E-mail"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/email_img"
                 android:padding="8dp"
                 android:inputType="textEmailAddress"
@@ -52,7 +52,7 @@
                 android:id="@+id/password_signup"
                 android:layout_gravity="center"
                 android:hint="@string/password"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/lock_img"
                 android:padding="8dp"
                 android:drawablePadding="8dp"
@@ -64,7 +64,7 @@
                 android:id="@+id/again_password_signup"
                 android:layout_gravity="center"
                 android:hint="@string/again_password"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:drawableStart="@drawable/lock_img"
                 android:padding="8dp"
                 android:drawablePadding="8dp"
