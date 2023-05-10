@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fuzzycontapp.PageRuleInterface;
 import com.example.fuzzycontapp.R;
-import com.example.fuzzycontapp.Rule_model;
+import com.example.fuzzycontapp.Indiv.Rule_model;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,7 @@ public class Rules_Adapter extends RecyclerView.Adapter<Rules_Adapter.Rules_View
     public Rules_Adapter(Context context, ArrayList<Rule_model> rule_models, PageRuleInterface pageRuleInterface){
         this.context = context;
         this.rule_models = rule_models;
+        System.out.println(rule_models.size() + "fghjk");
         this.pageRuleInterface = pageRuleInterface;
     }
     @NonNull
@@ -40,6 +41,7 @@ public class Rules_Adapter extends RecyclerView.Adapter<Rules_Adapter.Rules_View
     public void onBindViewHolder(@NonNull Rules_Adapter.Rules_ViewHolder holder, int position) {
         // Присваивание значений для каждой из строк по мере их появления на экране
         holder.textView_name.setText(rule_models.get(position).getName());
+        System.out.println(position + " b");
         holder.imageView_img.setImageBitmap(rule_models.get(position).getImgs().get(0));
     }
 
