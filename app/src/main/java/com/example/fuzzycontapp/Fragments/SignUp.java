@@ -65,18 +65,28 @@ public class SignUp extends Fragment {
                 if (!isEmailValid(email)){
                     binding.emailSignup.setBackgroundResource(R.drawable.pg_red);
                     n += 1;
+                    binding.emailSignup.setText("");
                 }
 
                 if (!isLoginValid(username)){
                     binding.usernameSignup.setBackgroundResource(R.drawable.pg_red);
                     n += 1;
+                    binding.usernameSignup.setText("");
                 }
-                if ((!isPasswordValid(password)) || (!isPasswordValid(confirm))){
+                if ((!isPasswordValid(password)) && (!isPasswordValid(confirm))){
                     binding.passwordSignup.setBackgroundResource(R.drawable.pg_red);
                     binding.againPasswordSignup.setBackgroundResource(R.drawable.pg_red);
                     n += 1;
+                    binding.passwordSignup.setText("");
+                    binding.againPasswordSignup.setText("");
                 }
-
+                if (!password.equals(confirm)){
+                    binding.passwordSignup.setBackgroundResource(R.drawable.pg_red);
+                    binding.againPasswordSignup.setBackgroundResource(R.drawable.pg_red);
+                    n += 1;
+                    binding.passwordSignup.setText("");
+                    binding.againPasswordSignup.setText("");
+                }
                 if (n == 0){
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
                     alertDialog.setTitle(R.string.code);
@@ -108,10 +118,14 @@ public class SignUp extends Fragment {
                                 output.flush();
                                 try {
                                     while(!input.ready());
-                                    System.out.println("assd");
-                                    System.out.println(input.read(charb));
-                                    System.out.println(new String (charb.array()));
-                                } catch (IOException e) {
+                                    JSONObject s = (new JSONObject(input.readLine()));
+                                    if (s.get("Status").equals("OK")){
+                                        binding.usernameSignup.setBackgroundResource(R.drawable.pg_green);
+                                        binding.passwordSignup.setBackgroundResource(R.drawable.pg_green);
+                                        binding.againPasswordSignup.setBackgroundResource(R.drawable.pg_green);
+                                        binding.emailSignup.setBackgroundResource(R.drawable.pg_green);
+                                    }
+                                } catch (IOException | JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -140,19 +154,15 @@ public class SignUp extends Fragment {
                         output.flush();
                         try {
                             while(!input.ready());
-                            System.out.println("assd");
-                            System.out.println(input.read(charb));
-                            System.out.println(new String (charb.array()));
-                        } catch (IOException e) {
+                            JSONObject s = (new JSONObject(input.readLine()));} catch (JSONException | IOException e) {
                             e.printStackTrace();
                         }
                     }
-                }
-                binding.usernameSignup.setText(""); binding.passwordSignup.setText(""); binding.againPasswordSignup.setText("");
-                binding.emailSignup.setText("");
+                    }
 
+                }
             }
-        });
+        );
     }
     public boolean isEmailValid(String email){
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
