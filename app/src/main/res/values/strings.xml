@@ -27,5 +27,5 @@
     <string name="forgot">Забыли пароль?</string>
     <string name="enter_login">Введите ваш логин</string>
     <string name="not_found">Пользователь не найден</string>
-
+    <string name="save">Сохранить</string>
 </resources>
