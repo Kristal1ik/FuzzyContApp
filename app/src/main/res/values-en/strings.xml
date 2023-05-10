@@ -27,5 +27,6 @@
     <string name="forgot">Forgot your password?</string>
     <string name="enter_login">Enter your login</string>
     <string name="not_found">User not found</string>
+    <string name="save">Save</string>
 
 </resources>
