@@ -17,21 +17,49 @@
         android:theme="@style/Theme.FuzzyContApp"
         tools:targetApi="31">
         <activity
-            android:name=".HomePageActivity"
+            android:name=".Optimization"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".UserPage"
+            android:name=".Activities.ChangePassword"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PageRule"
+            android:name=".RecoverPassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activities.AddRule"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activities.HomePageActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activities.UserPage"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activities.PageRule"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
