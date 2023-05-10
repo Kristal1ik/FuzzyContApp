@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/my_rules"
+        android:title="@string/my_rules"
+        android:icon="@drawable/rules"
+        />
+
+    <item
+        android:title=""/>
+
+    <item
+        android:id="@+id/theory"
+        android:title="@string/theory"
+        android:icon="@drawable/theory" />
+    <item
+        android:id="@+id/profile"
+        android:title="@string/profile"
+        android:icon="@drawable/person" />
+
+</menu>
