@@ -1,4 +1,4 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Activities;
 
 
 import static com.example.fuzzycontapp.Indiv.Global.*;
@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,8 +28,6 @@ import java.io.IOException;
 import java.nio.CharBuffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Objects;
 
@@ -67,7 +64,6 @@ public class UserPage extends AppCompatActivity {
             String savedRules = Integer.toString(new JSONObject(s).getInt("savedRules"));
             binding.rules.setText(myRules);
             binding.sRules.setText(savedRules);
-
             }
 
         binding.username.setText(USERNAME);
@@ -93,7 +89,11 @@ public class UserPage extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(UserPage.this, HomePageActivity.class);
+        startActivity(intent);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
@@ -104,50 +104,53 @@ public class UserPage extends AppCompatActivity {
         Uri uri = Objects.requireNonNull(data).getData();
         try {
             img0 = Files.readAllBytes(Paths.get(uri.getPath()));
+            String img = Base64.getEncoder().encodeToString(img0);
+            if (img.length() > 4096) {
+                int range = img.length() / 4096;
+                if ((img.length() % 4096) != 0) {
+                    range = img.length() / 4096 + 1;
+                }
+                int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
+                if (SDK_INT > 8) {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                            .permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                    JSONObject request = new JSONObject();
+                    try {
+                        request.put("Command", "splitted_data");
+                        System.out.println(range);
+                        request.put("Parts", range);
+                        request.put("SplittedCommand", "upload_profile_image");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    output.println(request);
+                    output.flush();
+                    try {
+                        while (!input.ready()) ;
+                        System.out.println(input.read(charb));
+                        System.out.println("==" + new String(charb.array()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                send_packs(img, range);
+            }
+            try {
+                IMG = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            binding.profileImg.setImageBitmap(IMG);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String img = Base64.getEncoder().encodeToString(img0);
-        if (img.length() > 4096) {
-            int range = img.length() / 4096;
-            if ((img.length() % 4096) != 0) {
-                range = img.length() / 4096 + 1;
-            }
-            int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
-            if (SDK_INT > 8) {
-                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-                        .permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-                JSONObject request = new JSONObject();
-                try {
-                    request.put("Command", "splitted_data");
-                    System.out.println(range);
-                    request.put("Parts", range);
-                    request.put("SplittedCommand", "upload_profile_image");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                output.println(request);
-                output.flush();
-                try {
-                    while (!input.ready()) ;
-                    System.out.println(input.read(charb));
-                    System.out.println("==" + new String(charb.array()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            send_packs(img, range);
+        catch (NullPointerException e){
+            Intent intent = new Intent(UserPage.this, HomePageActivity.class);
+            startActivity(intent);
         }
-        try {
-            IMG = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        binding.profileImg.setImageBitmap(IMG);
-
     }
 
 
