@@ -1,4 +1,4 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Indiv;
 
 import android.graphics.Bitmap;
 

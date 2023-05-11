@@ -1,6 +1,7 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Activities;
 
-import static com.example.fuzzycontapp.Pendulum1.rule_models;
+
+import static com.example.fuzzycontapp.Fragments.Pendulum1.rule_models;
 
 import androidx.appcompat.app.AppCompatActivity;
 
