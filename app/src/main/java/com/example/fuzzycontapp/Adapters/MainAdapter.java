@@ -1,10 +1,13 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.example.fuzzycontapp.Fragments.Login;
+import com.example.fuzzycontapp.Fragments.SignUp;
 
 public class MainAdapter extends FragmentStateAdapter {
 
