@@ -1,11 +1,8 @@
 package com.example.fuzzycontapp.Fragments;
 
-import static com.example.fuzzycontapp.Fragments.Pendulum4.ThreadSetBase.id;
 import static com.example.fuzzycontapp.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.MainActivity.MyThread.output;
-import static com.example.fuzzycontapp.Fragments.Pendulum4.ThreadSetBase.base_rules;
-import static com.example.fuzzycontapp.Fragments.Pendulum4.ThreadSetBase.bmp;
-import static com.example.fuzzycontapp.Fragments.Pendulum4.ThreadSetBase.usernames;
+
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,9 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.fuzzycontapp.Adapters.Rules_Adapter;
-import com.example.fuzzycontapp.PageRule;
+import com.example.fuzzycontapp.Activities.PageRule;
 import com.example.fuzzycontapp.PageRuleInterface;
-import com.example.fuzzycontapp.Rule_model;
+import com.example.fuzzycontapp.Indiv.Rule_model;
 import com.example.fuzzycontapp.databinding.FragmentPendulum4Binding;
 
 import org.json.JSONException;
@@ -38,6 +35,11 @@ import java.util.Base64;
 
 public class Pendulum4 extends Fragment implements PageRuleInterface {
     FragmentPendulum4Binding binding;
+
+    public static ArrayList<ArrayList<Bitmap>> bmp = new ArrayList<ArrayList<Bitmap>>();
+    public static ArrayList<String> usernames = new ArrayList<>();
+    public static ArrayList<String> base_rules = new ArrayList<>();
+    public static ArrayList<Integer> id = new ArrayList<>();
     public static ArrayList<Rule_model> rule_models = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,11 @@ public class Pendulum4 extends Fragment implements PageRuleInterface {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        bmp = new ArrayList<ArrayList<Bitmap>>();
+        usernames = new ArrayList<>();
+        base_rules = new ArrayList<>();
+        id = new ArrayList<>();
+        rule_models = new ArrayList<>();
         ThreadSetBase threadSetBase = new ThreadSetBase();
         threadSetBase.start();
         try {
@@ -81,10 +87,6 @@ public class Pendulum4 extends Fragment implements PageRuleInterface {
 
 
     static class ThreadSetBase extends Thread {
-        public static ArrayList<ArrayList<Bitmap>> bmp = new ArrayList<ArrayList<Bitmap>>();
-        public static ArrayList<String> usernames = new ArrayList<>();
-        public static ArrayList<String> base_rules = new ArrayList<>();
-        public static ArrayList<Integer> id = new ArrayList<>();
         @Override
         public void run() {
             collect_img();
