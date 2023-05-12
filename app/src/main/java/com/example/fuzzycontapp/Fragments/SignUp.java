@@ -1,10 +1,9 @@
 package com.example.fuzzycontapp.Fragments;
 
-import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.StrictMode;
 import android.text.InputType;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
