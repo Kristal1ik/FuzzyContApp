@@ -1,7 +1,7 @@
 package com.example.fuzzycontapp.Fragments;
 
-import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -203,9 +202,9 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
 }
 //package com.example.fuzzycontapp;
 //
-//import static com.example.fuzzycontapp.MainActivity.MyThread.charb;
-//import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-//import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+//import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.charb;
+//import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+//import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 //
 //import android.graphics.Bitmap;
 //import android.graphics.drawable.BitmapDrawable;
