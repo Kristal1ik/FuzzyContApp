@@ -1,8 +1,8 @@
 
 package com.example.fuzzycontapp.Activities;
 
-import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -16,11 +16,9 @@ import android.view.View;
 
 
 import com.example.fuzzycontapp.Fragments.HomeFragment;
-import com.example.fuzzycontapp.Fragments.Optimization;
 import com.example.fuzzycontapp.Fragments.Pendulum1;
 import com.example.fuzzycontapp.Fragments.Pendulum5;
 import com.example.fuzzycontapp.Fragments.Theory;
-import com.example.fuzzycontapp.MainActivity;
 import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.databinding.ActivityHomePageBinding;
 
