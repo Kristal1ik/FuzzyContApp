@@ -1,4 +1,4 @@
-package com.example.fuzzycontapp;
+package com.example.fuzzycontapp.Activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +11,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.fuzzycontapp.Accelerometer;
 import com.example.fuzzycontapp.Activities.HomePageActivity;
 import com.example.fuzzycontapp.Adapters.MainAdapter;
+import com.example.fuzzycontapp.R;
+import com.example.fuzzycontapp.databinding.ActivityHomePageBinding;
+import com.example.fuzzycontapp.databinding.ActivityMainBinding;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.BufferedReader;
@@ -25,27 +29,25 @@ import java.nio.charset.StandardCharsets;
 
 
 public class MainActivity extends AppCompatActivity {
-    TabLayout tabLayout;
-    ViewPager2 viewPager2;
+    ActivityMainBinding binding;
     MainAdapter mainAdapter;
     MyThread myThread;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        viewPager2 = (ViewPager2) findViewById(R.id.view_pager);
-        tabLayout.addTab(tabLayout.newTab().setText("Login"));
-        tabLayout.addTab(tabLayout.newTab().setText("Signup"));
-
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Login"));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Signup"));
 
         myThread = new MyThread();
         new Thread(myThread).start();
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
+                binding.viewPager.setCurrentItem(tab.getPosition());
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -57,7 +59,15 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         mainAdapter = new MainAdapter(fragmentManager, getLifecycle());
-        viewPager2.setAdapter(mainAdapter);
+        binding.viewPager.setAdapter(mainAdapter);
+
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Accelerometer.class);
+                startActivity(intent);
+            }
+        });
     }
     public static class MyThread implements Runnable{
         public static Socket sock;
