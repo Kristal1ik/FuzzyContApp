@@ -2,8 +2,8 @@ package com.example.fuzzycontapp.Activities;
 
 
 import static com.example.fuzzycontapp.Indiv.Global.*;
-import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
