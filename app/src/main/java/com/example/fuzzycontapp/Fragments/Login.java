@@ -1,8 +1,8 @@
 package com.example.fuzzycontapp.Fragments;
 
 
-import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,12 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.fuzzycontapp.Accelerometer;
 import com.example.fuzzycontapp.Activities.ChangePassword;
 import com.example.fuzzycontapp.Activities.HomePageActivity;
 import com.example.fuzzycontapp.Indiv.Global;
-import com.example.fuzzycontapp.MainActivity;
 import com.example.fuzzycontapp.R;
-import com.example.fuzzycontapp.RecoverPassword;
 import com.example.fuzzycontapp.databinding.FragmentLoginBinding;
 
 import org.json.JSONException;
@@ -49,6 +48,7 @@ public class Login extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         return binding.getRoot();
+
 
     }
 
