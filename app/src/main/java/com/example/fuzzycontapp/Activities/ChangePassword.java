@@ -1,7 +1,7 @@
 package com.example.fuzzycontapp.Activities;
 
-import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 
-import com.example.fuzzycontapp.MainActivity;
 import com.example.fuzzycontapp.databinding.ActivityChangePasswordBinding;
 
 import org.json.JSONException;
