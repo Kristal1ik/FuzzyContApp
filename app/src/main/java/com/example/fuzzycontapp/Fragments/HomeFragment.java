@@ -2,8 +2,8 @@ package com.example.fuzzycontapp.Fragments;
 
 
 
-import static com.example.fuzzycontapp.MainActivity.MyThread.input;
-import static com.example.fuzzycontapp.MainActivity.MyThread.output;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,8 +13,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.StrictMode;
@@ -22,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.fuzzycontapp.Accelerometer;
 import com.example.fuzzycontapp.Activities.ChangePassword;
 import com.example.fuzzycontapp.Adapters.CategoriesAdapter;
 import com.example.fuzzycontapp.Adapters.Rules_Adapter;
@@ -32,6 +31,7 @@ import com.example.fuzzycontapp.PageCategoryInterface;
 import com.example.fuzzycontapp.PageRuleInterface;
 import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.Indiv.Rule_model;
+import com.example.fuzzycontapp.databinding.ActivityOptimizationBinding;
 import com.example.fuzzycontapp.databinding.FragmentHomeBinding;
 
 import org.json.JSONException;
@@ -104,13 +104,20 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         Rules_Adapter rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
         binding.rviewRules.setAdapter(rules_adapter);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        binding.rviewRules.setLayoutManager(linearLayoutManager2);}
+        binding.rviewRules.setLayoutManager(linearLayoutManager2);
+
+        binding.read.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("qwe");
+            }
+        });
+    }
+
 
     @Override
     public void onItemClick(int position) {
         System.out.println(position);
-//        ThreadSendHeart threadSendHeart= new ThreadSendHeart();
-//        new Thread(threadSendHeart).start();
         Intent intent = new Intent(this.getContext(), PageRule.class);
         intent.putExtra("NAME", rule_models.get(position).getName());
         intent.putExtra("RULES", rule_models.get(position).getRules());
@@ -121,15 +128,16 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
 
     @Override
     public void onCategoryClick(int position) {
-        System.out.println("lll" + position);
         switch (position){
-            case 1:{
-                Intent intent = new Intent(this.getContext(), ChangePassword.class);
+            case 0:{
+                Intent intent = new Intent(this.getContext(), Accelerometer.class);
                 startActivity(intent);
             }
-        }
-        if (position == 1) {
-
+            case 1:{
+                Intent intent = new Intent(this.getContext(), Optimization.class);
+                startActivity(intent);
+                break;
+            }
         }
     }
 
@@ -242,7 +250,6 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             }
             output.println(request);
             output.flush();
-
         }
     }
 
