@@ -1,7 +1,6 @@
 package com.example.fuzzycontapp.Fragments;
 
 
-
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
@@ -22,6 +21,9 @@ import android.view.ViewGroup;
 
 import com.example.fuzzycontapp.Accelerometer;
 import com.example.fuzzycontapp.Activities.ChangePassword;
+import com.example.fuzzycontapp.Activities.MathsModel;
+import com.example.fuzzycontapp.Activities.Optimization;
+import com.example.fuzzycontapp.Activities.PhysicsModel;
 import com.example.fuzzycontapp.Adapters.CategoriesAdapter;
 import com.example.fuzzycontapp.Adapters.Rules_Adapter;
 import com.example.fuzzycontapp.Indiv.CategoryRow;
@@ -128,19 +130,29 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
 
     @Override
     public void onCategoryClick(int position) {
-        switch (position){
-            case 0:{
+        switch (position) {
+            case 0: {
                 Intent intent = new Intent(this.getContext(), Accelerometer.class);
                 startActivity(intent);
+                break;
             }
-            case 1:{
+            case 1: {
                 Intent intent = new Intent(this.getContext(), Optimization.class);
+                startActivity(intent);
+                break;
+            }
+            case 2: {
+                Intent intent = new Intent(this.getContext(), PhysicsModel.class);
+                startActivity(intent);
+                break;
+            }
+            case 3: {
+                Intent intent = new Intent(this.getContext(), MathsModel.class);
                 startActivity(intent);
                 break;
             }
         }
     }
-
 
 
     static class ThreadSetBase extends Thread {
@@ -151,18 +163,18 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         }
     }
 
-    static private void setRule_models(){
+    static private void setRule_models() {
         System.out.println(bmp2.size());
-        for (int i = 0; i<usernames.size(); i++){
+        for (int i = 0; i < usernames.size(); i++) {
             System.out.println(i);
             rule_models.add(new Rule_model(usernames.get(i), bmp2.get(i), base_rules.get(i), id.get(i)));
         }
     }
-    static private ArrayList<ArrayList<Bitmap>> collect_img(){
+
+    static private ArrayList<ArrayList<Bitmap>> collect_img() {
         CharBuffer charb = CharBuffer.allocate(10000);
         int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
-        if (SDK_INT > 8)
-        {
+        if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -178,32 +190,31 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             output.println(request);
             output.flush();
             try {
-                while(!input.ready());
+                while (!input.ready()) ;
                 String s = input.readLine();
                 charb.put(s);
                 int n = new JSONObject(new String(charb.array())).getInt("RulesCount");
-                for (int i=0; i < n; i++){
+                for (int i = 0; i < n; i++) {
                     bmp2.add(new ArrayList<>());
-                    while(!input.ready());
+                    while (!input.ready()) ;
                     JSONObject s3 = (new JSONObject(input.readLine()));
                     usernames.add(s3.getString("Username"));
                     base_rules.add(s3.getString("Base"));
                     id.add(s3.getInt("RuleID"));
-                    for (int j=0; j < 3; j++){
-                        while(!input.ready());
+                    for (int j = 0; j < 3; j++) {
+                        while (!input.ready()) ;
                         String s2 = input.readLine();
                         bmp2.get(i).add(conv_bitmap(get_img(s2)));
                     }
                 }
-            } catch (JSONException e) {
+            } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }}
+        }
         return bmp2;
     }
-    static public Bitmap conv_bitmap(String str_img){
+
+    static public Bitmap conv_bitmap(String str_img) {
 
         byte[] img_byte = new byte[0];
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -212,14 +223,15 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         return BitmapFactory.decodeByteArray(img_byte, 0, img_byte.length);
 
     }
-    static public String get_img(String img){
+
+    static public String get_img(String img) {
         JSONObject jsonObject;
         StringBuilder enc_img = new StringBuilder();
         try {
             jsonObject = new JSONObject(img);
             int n = jsonObject.getInt("Parts");
-            for (int i=0; i < n; i++){
-                while (!input.ready());
+            for (int i = 0; i < n; i++) {
+                while (!input.ready()) ;
                 String readed = String.valueOf(input.readLine());
                 output.println("{\"Status\": \"OK\"}");
                 output.flush();
@@ -233,10 +245,9 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         return enc_img.toString();
     }
 
-    public static void send_heart(int ID){
+    public static void send_heart(int ID) {
         int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
-        if (SDK_INT > 8)
-        {
+        if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -254,17 +265,16 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
     }
 
 
-
     public void setUpCategories() {
         String[] names = getResources().getStringArray(R.array.names);
-        for (int i = 0; i < names.length; i++){
+        for (int i = 0; i < names.length; i++) {
             categoryRows.add(new CategoryRow(names[i], categoryImg[i]));
         }
     }
+
     private ArrayList<Bitmap> getImg() throws IOException {
         int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
-        if (SDK_INT > 8)
-        {
+        if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -280,9 +290,11 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             output.println(request);
             output.flush();
 
-            while(!input.ready());
+            while (!input.ready()) ;
             String s2 = input.readLine();
             System.out.println(s2);
-            bmp.add(conv_bitmap(get_img(s2)));}
-        return bmp;}
+            bmp.add(conv_bitmap(get_img(s2)));
+        }
+        return bmp;
+    }
 }
