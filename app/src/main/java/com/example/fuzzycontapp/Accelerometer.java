@@ -12,8 +12,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.fuzzycontapp.databinding.ActivityAddRuleBinding;
-import com.example.fuzzycontapp.databinding.ActivityHomePageBinding;
 import com.example.fuzzycontapp.databinding.ActivitySensorBinding;
 
 public class Accelerometer extends Activity {
@@ -73,6 +71,7 @@ public class Accelerometer extends Activity {
     void showInfo() {
         sb.setLength(0);
         sb.append("\n\nLin accel : " + format(valuesLinAccel));
+        System.out.println(valuesLinAccel[1]);
         binding.tvText.setText(sb);
     }
 
