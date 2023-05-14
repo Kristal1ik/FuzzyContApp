@@ -1,5 +1,16 @@
 package com.example.fuzzycontapp.Activities;
 
+
+import static com.example.fuzzycontapp.Indiv.Const.dt;
+import static com.example.fuzzycontapp.Indiv.Const.g;
+import static com.example.fuzzycontapp.Indiv.Const.k;
+import static com.example.fuzzycontapp.Indiv.Const.l;
+import static com.example.fuzzycontapp.Indiv.Const.m;
+import static com.example.fuzzycontapp.Indiv.Const.maxis;
+import static com.example.fuzzycontapp.Indiv.Const.r;
+import static com.example.fuzzycontapp.Indiv.Const.v0;
+import static com.example.fuzzycontapp.Indiv.Const.x0;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -7,166 +18,36 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
+import com.example.fuzzycontapp.FuzzyLogic.Controller;
+import com.example.fuzzycontapp.FuzzyLogic.Rules;
+import com.example.fuzzycontapp.FuzzyLogic.Trapezoid;
 import com.example.fuzzycontapp.Indiv.Const;
 import com.example.fuzzycontapp.R;
 
-//
-//import android.content.Context;
-//import android.content.res.Resources;
-//import android.graphics.Bitmap;
-//import android.graphics.BitmapFactory;
-//import android.graphics.Canvas;
-//import android.graphics.Color;
-//import android.graphics.Paint;
-//import android.graphics.Path;
-//import android.util.DisplayMetrics;
-//import android.view.SurfaceHolder;
-//import android.view.SurfaceView;
-//
-//import com.example.fuzzycontapp.R;
-//
-//public class MathsModelClass extends SurfaceView implements Runnable {
-//    Thread thread = null;
-//    boolean canDraw = false;
-//
-//    Paint blue, grey_line;
-//    Path d_square = new Path();
-//
-//    Canvas canvas;
-//    SurfaceHolder surfaceHolder;
-//
-//    int circle_x, circle_y;
-//    int d_circle_x, d_circle_y;
-//
-//    int width, height;
-//
-//    public MathsModelClass(Context context) {
-//        super(context);
-//
-//        surfaceHolder = getHolder();
-//        circle_x = 130;
-//        circle_y = 130;
-//
-//        d_circle_x = toPxs(65);
-//        d_circle_y = toPxs(65);
-//
-//        width = Resources.getSystem().getDisplayMetrics().widthPixels;
-//        height = Resources.getSystem().getDisplayMetrics().heightPixels;
-//    }
-//
-//    @Override
-//    public void run() {
-//        brushes();
-//        while (canDraw){
-//            if(!surfaceHolder.getSurface().isValid()){
-//                continue;
-//            }
-//            canvas = surfaceHolder.lockCanvas();
-//            motion_circle(10);
-//            motion_d_circle(10);
-//            canvas.drawColor(getResources().getColor(R.color.lav1));
-//            draw_density_square(width / 2, height / 2, 325, 325);
-//            canvas.drawCircle(circle_x, circle_y, 50, blue);
-//            canvas.drawCircle(d_circle_x, d_circle_y, toPxs(25), blue);
-//            surfaceHolder.unlockCanvasAndPost(canvas );
-//        }    }
-//
-//    public void pause(){
-//        canDraw = false;
-//        while (true){
-//        try {
-//            thread.join();
-//            break;
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        }
-//        thread = null;
-//    }
-//    public void resume(){
-//        canDraw = true;
-//        thread = new Thread(this);
-//        thread.start();
-//
-//    }
-//    public void brushes(){
-//        blue = new Paint();
-//        blue.setColor(getResources().getColor(R.color.blue));
-//        blue.setStyle(Paint.Style.FILL);
-//
-//        grey_line = new Paint();
-//        grey_line.setColor(getResources().getColor(R.color.purple_700));
-//        grey_line.setStyle(Paint.Style.STROKE);
-//        grey_line.setStrokeWidth(30);
-//    }
-//
-//    public void motion_circle(int speed){
-//        if ((circle_y == 130) && (circle_x < 650)){
-//            circle_x = circle_x + speed;
-//        }
-//        if ((circle_y < 650) && (circle_x == 650)){
-//            circle_y = circle_y + speed;
-//        }
-//        if ((circle_y == 650) && (circle_x > 130)){
-//            circle_x = circle_x - speed;
-//        }
-//        if ((circle_y > 130) && (circle_x == 130)){
-//            circle_y = circle_y - speed;
-//        }
-//    }
-//
-//    private int toPxs(int dps){
-//        return (int) (dps * getResources().getDisplayMetrics().density);
-//    }
-//
-//    private void draw_density_square(int x1, int y1, int x2, int y2){
-//        int xdp1, ydp1, xdp2, ydp2;
-//
-//        xdp1 = toPxs(x1);
-//        ydp1 = toPxs(y1);
-//        xdp2 = toPxs(x2);
-//        ydp2 = toPxs(y2);
-//
-//        d_square.moveTo(xdp1, ydp1);
-//        d_square.lineTo(xdp2, ydp1);
-//        d_square.moveTo(xdp2, ydp1);
-//        d_square.lineTo(xdp2, ydp2);
-//        d_square.moveTo(xdp2, ydp2);
-//        d_square.lineTo(xdp1, ydp2);
-//        d_square.moveTo(xdp1, ydp2);
-//        d_square.lineTo(xdp1, ydp1);
-//
-//        this.canvas.drawPath(d_square, grey_line);
-//
-//    }
-//    public void motion_d_circle(int speed){
-//        if ((d_circle_y == toPxs(65)) && (d_circle_x < toPxs(325))){
-//            d_circle_x = d_circle_x + toPxs(speed);
-//        }
-//        if ((d_circle_y < toPxs(325)) && (d_circle_x == toPxs(325))){
-//            d_circle_y = d_circle_y + toPxs(speed);
-//        }
-//        if ((d_circle_y == toPxs(325)) && (d_circle_x > toPxs(65))){
-//            d_circle_x = d_circle_x - toPxs(speed);
-//        }
-//        if ((d_circle_y > toPxs(65)) && (d_circle_x == toPxs(65))){
-//            d_circle_y = d_circle_y - toPxs(speed);
-//        }
-//    }
-//}
+import java.util.ArrayList;
+import java.util.List;
+import android.content.Context;
+
 public class MathsModelClass extends View {
-    Paint blue, grey_line, blue_line;
-    int width, height;
+    Paint blue, grey_line, border_line;
+    double width, height;
     int x_pos, y_pos;
-    int y_dir;
+    double delta;
+
+    ArrayList<Double> xx = new ArrayList<>();
+    double x = x0;
+    double v = v0;
 
     public MathsModelClass(Context context) {
         super(context);
         setBackgroundColor(getResources().getColor(R.color.lav1));
         width = Resources.getSystem().getDisplayMetrics().widthPixels;
         height = Resources.getSystem().getDisplayMetrics().heightPixels;
-        x_pos = width / 2; y_pos = height / 2;
-        y_dir = 1;
+        System.out.println(width + " " + height);
+        x_pos = (int)width / 2; y_pos = 0;
+        delta = (height / Const.height) * 4100;
+        System.out.println(delta);
+
     }
 
     @Override
@@ -182,20 +63,77 @@ public class MathsModelClass extends View {
         grey_line.setStyle(Paint.Style.STROKE);
         grey_line.setStrokeWidth(Const.strWidth);
 
-        blue_line = new Paint();
-        blue_line.setColor(getResources().getColor(R.color.blue));
-        blue_line.setStyle(Paint.Style.STROKE);
-        blue_line.setStrokeWidth(Const.silWidth);
+
+        border_line = new Paint();
+        border_line.setColor(getResources().getColor(R.color.purple_700));
+        border_line.setStyle(Paint.Style.STROKE);
+        border_line.setAlpha(50);
+        border_line.setStrokeWidth(Const.borderWidth);
+
+
+        for (int i=0; i< height; i+=height/5){
+            Rect border = new Rect();
+            border.set(0, i, (int)height, i+2);
+            canvas.drawRect(border, border_line);
+        }
+
+        xx.add(x);
+        List<Trapezoid> lst = new ArrayList<Trapezoid>();
+        double[] trap = new Controller(x, v).return_();
+        Trapezoid trunc1 = new Trapezoid(new double[] {Rules.w1[0], Rules.w1[1], Rules.w1[2], Rules.w1[3], trap[0]});
+        Trapezoid trunc2 = new Trapezoid(new double[] {Rules.w2[0], Rules.w2[1], Rules.w2[2], Rules.w2[3], trap[1]});
+        Trapezoid trunc3 = new Trapezoid(new double[] {Rules.w3[0], Rules.w3[1], Rules.w3[2], Rules.w3[3], trap[2]});
+        Trapezoid trunc4 = new Trapezoid(new double[] {Rules.w4[0], Rules.w4[1], Rules.w4[2], Rules.w4[3], trap[3]});
+        Trapezoid trunc5 = new Trapezoid(new double[] {Rules.w5[0], Rules.w5[1], Rules.w5[2], Rules.w5[3], trap[4]});
+        lst.add(trunc1);
+        lst.add(trunc2);
+        lst.add(trunc3);
+        lst.add(trunc4);
+        lst.add(trunc5);
+        double w = area(lst);
+        double[] xv = f(x, v, w);
+        x = xv[0]; v = xv[1];
+
 
         Rect rect = new Rect();
         Rect silk = new Rect();
-        rect.set(x_pos, 0, x_pos, y_pos);
-        silk.set(0, 0, width, Const.silWidth);
+        rect.set(x_pos, 0, x_pos, (int)(x*delta));
+        silk.set(0, 0, (int)width, Const.silWidth);
         canvas.drawRect(rect, grey_line);
-        canvas.drawRect(silk,blue_line);
-        canvas.drawCircle(x_pos, y_pos, Const.r, blue);
-        y_pos = y_dir + y_pos;
-
+        canvas.drawCircle(x_pos, (int)(x*delta), Const.radius, blue);
         invalidate();
+    }
+
+    private static double[] f(double x, double v, double w) {
+        double a = (m * r * r * (g - w)) / (0.5 * (m * Const.R * Const.R + maxis * r * r) + (m + maxis) * r * r);
+        if ((x == Const.R && v < 0) || (x == l && v > 0)) {
+            v = -v * (1 - k);
+        }
+        double xnew = x + v * dt + 0.5 * Math.pow(dt, 2) * a;
+        double vnew = v + a * dt;
+        if (xnew > l) {
+            xnew = l;
+        }
+        if (xnew < Const.R) {
+            xnew = Const.R;
+        }
+        return new double[]{xnew, vnew};
+    }
+    private static double area(List<Trapezoid> lst_w){
+        double dx = 0.1;
+        double integr1 = 0.0;
+        double integr2 = 0.0;
+        for (double i=0; i < 30; i+=dx){
+            double def_h = 0.0;
+            for (Trapezoid elem: lst_w){
+                double h = elem.muh(i);
+                def_h = Math.max(def_h, h);
+                integr1 += def_h * dx * i;
+                integr2 += def_h * dx;}}
+        if (integr1 == 0) return 0;
+        try{
+            return integr1 / integr2;}
+        catch (ArithmeticException ex){
+            return 0;}
     }
 }
