@@ -12,6 +12,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.StrictMode;
@@ -19,8 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.fuzzycontapp.Accelerometer;
-import com.example.fuzzycontapp.Activities.ChangePassword;
+import com.example.fuzzycontapp.Activities.AccelerometerModel;
+import com.example.fuzzycontapp.Activities.HomePageActivity;
 import com.example.fuzzycontapp.Activities.MathsModel;
 import com.example.fuzzycontapp.Activities.Optimization;
 import com.example.fuzzycontapp.Activities.PhysicsModel;
@@ -33,7 +35,6 @@ import com.example.fuzzycontapp.PageCategoryInterface;
 import com.example.fuzzycontapp.PageRuleInterface;
 import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.Indiv.Rule_model;
-import com.example.fuzzycontapp.databinding.ActivityOptimizationBinding;
 import com.example.fuzzycontapp.databinding.FragmentHomeBinding;
 
 import org.json.JSONException;
@@ -111,7 +112,9 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         binding.read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("qwe");
+//                Global.TO_READ = true;
+//                Intent intent = new Intent(getActivity(), HomePageActivity.class);
+//                startActivity(intent);
             }
         });
     }
@@ -132,7 +135,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
     public void onCategoryClick(int position) {
         switch (position) {
             case 0: {
-                Intent intent = new Intent(this.getContext(), Accelerometer.class);
+                Intent intent = new Intent(this.getContext(), AccelerometerModel.class);
                 startActivity(intent);
                 break;
             }
