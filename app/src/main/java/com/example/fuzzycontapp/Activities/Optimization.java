@@ -5,6 +5,7 @@ import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -45,8 +46,15 @@ public class Optimization extends AppCompatActivity {
                 sendData.start();
             }
         });
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
+
 
     private static void send_data(){
         String s = "";
