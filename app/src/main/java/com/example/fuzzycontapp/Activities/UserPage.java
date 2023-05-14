@@ -83,9 +83,7 @@ public class UserPage extends AppCompatActivity {
 
             }
         });
-    } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+    } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
     }
