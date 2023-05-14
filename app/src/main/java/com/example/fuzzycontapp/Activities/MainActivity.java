@@ -3,19 +3,14 @@ package com.example.fuzzycontapp.Activities;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import com.example.fuzzycontapp.Accelerometer;
-import com.example.fuzzycontapp.Activities.HomePageActivity;
 import com.example.fuzzycontapp.Adapters.MainAdapter;
 import com.example.fuzzycontapp.R;
-import com.example.fuzzycontapp.databinding.ActivityHomePageBinding;
 import com.example.fuzzycontapp.databinding.ActivityMainBinding;
 import com.google.android.material.tabs.TabLayout;
 
@@ -39,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Login"));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Signup"));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.login));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.signup));
 
         myThread = new MyThread();
         new Thread(myThread).start();
