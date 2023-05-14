@@ -1,45 +1,46 @@
 package com.example.fuzzycontapp.Activities;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+
 import android.view.View;
 import android.view.Window;
+import android.widget.LinearLayout;
+
+import com.example.fuzzycontapp.Fragments.MathsFragment;
 
 import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.databinding.ActivityMathsModelBinding;
 
-public class MathsModel extends Activity {
-    MathsModelClass mathsModelClass;
+public class MathsModel extends AppCompatActivity {
+    ActivityMathsModelBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.blue));
-        mathsModelClass = new MathsModelClass(this);
-        setContentView(mathsModelClass);
-    }
+        binding = ActivityMathsModelBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setFragment(new MathsFragment());
+        setContentView(view);
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        mathsModelClass.pause();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        mathsModelClass.resume();
-//    }
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+    }
+    protected void setFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout_maths, fragment);
+        fragmentTransaction.commit();
+    }
 }
