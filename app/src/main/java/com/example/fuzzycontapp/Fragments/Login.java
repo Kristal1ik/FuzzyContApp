@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.fuzzycontapp.Accelerometer;
 import com.example.fuzzycontapp.Activities.ChangePassword;
 import com.example.fuzzycontapp.Activities.HomePageActivity;
 import com.example.fuzzycontapp.Indiv.Global;
