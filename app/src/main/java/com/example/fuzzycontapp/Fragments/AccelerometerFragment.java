@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.fuzzycontapp.Activities.AccelerometerModelClass;
 import com.example.fuzzycontapp.R;
 
 public class AccelerometerFragment extends Fragment {
@@ -22,8 +23,10 @@ public class AccelerometerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_accelerometer, container, false);
-//        FrameLayout frameLayout = (FrameLayout) rootView.findViewById(R.id.maths_fragment);
-//        frameLayout.addView(new );
+        FrameLayout frameLayout = (FrameLayout) rootView.findViewById(R.id.accelerometer_fragment);
+        frameLayout.addView(new AccelerometerModelClass((getActivity())));
         return rootView;
     }
+
+
 }
