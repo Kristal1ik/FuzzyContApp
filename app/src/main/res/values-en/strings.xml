@@ -28,5 +28,7 @@
     <string name="enter_login">Enter your login</string>
     <string name="not_found">User not found</string>
     <string name="save">Save</string>
-
+    <string name="settings">Settings</string>
+    <string name="sensitivity">Sensitivity</string>
+    <string name="mass">Mass</string>
 </resources>
