@@ -33,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 app:elevation="0dp"
+                app:itemRippleColor="@color/purple_700"
                 app:itemTextColor="@drawable/bottom_bar_item_selected"
                 app:itemIconTint="@drawable/bottom_bar_item_selected"
                 android:background="@android:color/transparent"
