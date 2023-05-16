@@ -14,7 +14,7 @@ public class Const {
     public static final double T = 60;
     public static final double x0 = 0.05;
     public static final double v0 = 0;
-    public static final double l = 0.5;
+    public static final double l = 0.465;
     public static final double x1 = 0.2;
     public static final double x2 = 0.3;
     public static final double k = 0.1;
