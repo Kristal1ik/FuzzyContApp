@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/back"
             android:src="@drawable/back"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:clickable="true"/>
