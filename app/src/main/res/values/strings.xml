@@ -31,4 +31,6 @@
     <string name="settings">Настройки</string>
     <string name="sensitivity">Чувствительность</string>
     <string name="mass">Масса</string>
+    <string name="bottom_border">Нижняя граница</string>
+    <string name="top_border">Верхняя граница</string>
 </resources>
