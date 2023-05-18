@@ -9,5 +9,5 @@ public class Global {
     public static Bitmap IMG;
     public static boolean TO_READ = false;
     public static int THEORY_NUMBER;
-
+    public static String ADDRESS;
 }
