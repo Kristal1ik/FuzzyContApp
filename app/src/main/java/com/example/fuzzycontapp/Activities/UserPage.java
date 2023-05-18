@@ -86,6 +86,12 @@ public class UserPage extends AppCompatActivity {
     } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+        binding.logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
     }
     @Override
     public void onBackPressed() {
@@ -186,6 +192,33 @@ public class UserPage extends AppCompatActivity {
                 }
             }
             n += 1;
+        }
+    }
+    public void logout() {
+        String s = "";
+        int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
+        if (SDK_INT > 8) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            JSONObject request = new JSONObject();
+            try {
+                request.put("Command", "logout");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            output.println(request);
+            output.flush();
+            try {
+                while (!input.ready()) ;
+                s = input.readLine();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 //    static class ChangeAt extends Thread {
