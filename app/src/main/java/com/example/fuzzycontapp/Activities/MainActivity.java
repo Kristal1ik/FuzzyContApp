@@ -56,13 +56,7 @@ public class MainActivity extends AppCompatActivity {
         mainAdapter = new MainAdapter(fragmentManager, getLifecycle());
         binding.viewPager.setAdapter(mainAdapter);
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Accelerometer.class);
-                startActivity(intent);
-            }
-        });
+
     }
     public static class MyThread implements Runnable{
         public static Socket sock;
