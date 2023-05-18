@@ -5,6 +5,7 @@ import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,9 +17,11 @@ import android.view.View;
 
 
 import com.example.fuzzycontapp.Fragments.HomeFragment;
+import com.example.fuzzycontapp.Fragments.MathsFragment;
 import com.example.fuzzycontapp.Fragments.Pendulum1;
 import com.example.fuzzycontapp.Fragments.Pendulum5;
 import com.example.fuzzycontapp.Fragments.Theory;
+import com.example.fuzzycontapp.Indiv.Global;
 import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.databinding.ActivityHomePageBinding;
 
@@ -36,7 +39,15 @@ public class HomePageActivity extends AppCompatActivity {
         binding = ActivityHomePageBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        replace(new HomeFragment());
+//        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.purple_700));
+
+
+        if (Global.TO_READ){
+            Global.TO_READ = false;
+            replace(new Theory());
+        }
+        else{
+        replace(new HomeFragment());}
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
@@ -67,6 +78,7 @@ public class HomePageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
