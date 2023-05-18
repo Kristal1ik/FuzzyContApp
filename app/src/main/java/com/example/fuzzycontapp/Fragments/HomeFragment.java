@@ -12,7 +12,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -35,6 +34,7 @@ import com.example.fuzzycontapp.PageCategoryInterface;
 import com.example.fuzzycontapp.PageRuleInterface;
 import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.Indiv.Rule_model;
+import com.example.fuzzycontapp.databinding.ActivityHomePageBinding;
 import com.example.fuzzycontapp.databinding.FragmentHomeBinding;
 
 import org.json.JSONException;
@@ -112,9 +112,10 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         binding.read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Global.TO_READ = true;
-//                Intent intent = new Intent(getActivity(), HomePageActivity.class);
-//                startActivity(intent);
+                (((HomePageActivity)getActivity()).findViewById(R.id.bottomNavigationView)).setSelected(true);
+                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+                fm.replace(R.id.frame_layout, new Theory());
+                fm.commit();
             }
         });
     }
