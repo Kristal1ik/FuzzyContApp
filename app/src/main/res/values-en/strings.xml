@@ -31,4 +31,7 @@
     <string name="settings">Settings</string>
     <string name="sensitivity">Sensitivity</string>
     <string name="mass">Mass</string>
+    <string name="bottom_border">Bottom border</string>
+    <string name="top_border">Top border</string>
+
 </resources>
