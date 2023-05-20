@@ -21,6 +21,7 @@ import android.view.View;
 import com.example.fuzzycontapp.FuzzyLogic.Controller;
 import com.example.fuzzycontapp.FuzzyLogic.Rules;
 import com.example.fuzzycontapp.FuzzyLogic.Trapezoid;
+import com.example.fuzzycontapp.Indiv.ChartArrays;
 import com.example.fuzzycontapp.Indiv.Const;
 import com.example.fuzzycontapp.R;
 
@@ -34,9 +35,10 @@ public class MathsModelClass extends View {
     int x_pos, y_pos;
     double delta;
 
-    ArrayList<Double> xx = new ArrayList<>();
     double x = x0;
     double v = v0;
+    double w = 0;
+    float counter = 0.0f;
 
     public MathsModelClass(Context context) {
         super(context);
@@ -47,7 +49,10 @@ public class MathsModelClass extends View {
         x_pos = (int)width / 2; y_pos = 0;
         delta = (height / Const.height) * 4100;
         System.out.println(delta);
-
+        ChartArrays.XXX = new ArrayList<>();
+        ChartArrays.VVV = new ArrayList<>();
+        ChartArrays.WWW = new ArrayList<>();
+        ChartArrays.TIME = new ArrayList<>();
     }
 
     @Override
@@ -70,14 +75,12 @@ public class MathsModelClass extends View {
         border_line.setAlpha(50);
         border_line.setStrokeWidth(Const.borderWidth);
 
-
         for (int i=0; i< height; i+=height/5){
             Rect border = new Rect();
             border.set(0, i, (int)height, i+2);
             canvas.drawRect(border, border_line);
         }
 
-        xx.add(x);
         List<Trapezoid> lst = new ArrayList<Trapezoid>();
         double[] trap = new Controller(x, v).return_();
         Trapezoid trunc1 = new Trapezoid(new double[] {Rules.w1[0], Rules.w1[1], Rules.w1[2], Rules.w1[3], trap[0]});
@@ -90,10 +93,16 @@ public class MathsModelClass extends View {
         lst.add(trunc3);
         lst.add(trunc4);
         lst.add(trunc5);
+
+        ChartArrays.XXX.add((float)x);
+        ChartArrays.VVV.add((float)v);
+        ChartArrays.WWW.add((float)w);
+        ChartArrays.TIME.add((float)counter/60);
+
         double w = area(lst);
         double[] xv = f(x, v, w);
         x = xv[0]; v = xv[1];
-
+        counter++;
 
         Rect rect = new Rect();
         Rect silk = new Rect();
