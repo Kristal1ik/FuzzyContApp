@@ -1,9 +1,12 @@
 package com.example.fuzzycontapp.Fragments;
 
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,5 @@ public class AccelerometerFragment extends Fragment {
         frameLayout.addView(new AccelerometerModelClass((getActivity())));
         return rootView;
     }
-
 
 }
