@@ -180,20 +180,33 @@
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="asdfghjkl;"
-                    android:id="@+id/email"
                     android:textColor="@color/lav1"
                     android:textSize="18sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/lav1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/logout"
+                    android:text="@string/logout"
+                    android:layout_marginTop="24dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/lav1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/logout" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/lav1" />
+
 
         </LinearLayout>
 
