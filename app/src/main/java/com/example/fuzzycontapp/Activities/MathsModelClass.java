@@ -34,6 +34,7 @@ public class MathsModelClass extends View {
     double width, height;
     int x_pos, y_pos;
     double delta;
+    int delta_borders;
 
     double x = x0;
     double v = v0;
@@ -49,6 +50,8 @@ public class MathsModelClass extends View {
         x_pos = (int)width / 2; y_pos = 0;
         delta = (height / Const.height) * 4100;
         System.out.println(delta);
+        delta_borders = (int)height / 5;
+
         ChartArrays.XXX = new ArrayList<>();
         ChartArrays.VVV = new ArrayList<>();
         ChartArrays.WWW = new ArrayList<>();
@@ -75,11 +78,13 @@ public class MathsModelClass extends View {
         border_line.setAlpha(50);
         border_line.setStrokeWidth(Const.borderWidth);
 
-        for (int i=0; i< height; i+=height/5){
-            Rect border = new Rect();
-            border.set(0, i, (int)height, i+2);
-            canvas.drawRect(border, border_line);
-        }
+        Rect border = new Rect();
+        border.set(0, (int)(Const.x1_current_maths * 10 *delta_borders), (int) height, (int)(Const.x1_current_maths*delta_borders * 10) + 2);
+        canvas.drawRect(border, border_line);
+
+        Rect border2 = new Rect();
+        border2.set(0, (int)(Const.x2_current_maths* 10 *delta_borders), (int) height, (int)(Const.x2_current_maths*delta_borders * 10) + 2);
+        canvas.drawRect(border2, border_line);
 
         List<Trapezoid> lst = new ArrayList<Trapezoid>();
         double[] trap = new Controller(x, v).return_();
@@ -99,7 +104,7 @@ public class MathsModelClass extends View {
         ChartArrays.WWW.add((float)w);
         ChartArrays.TIME.add((float)counter/60);
 
-        double w = area(lst);
+        w = area(lst);
         double[] xv = f(x, v, w);
         x = xv[0]; v = xv[1];
         counter++;
