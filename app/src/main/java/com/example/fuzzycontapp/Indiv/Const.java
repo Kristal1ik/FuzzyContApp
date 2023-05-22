@@ -31,4 +31,11 @@ public class Const {
     public static int position_top = 3;
     public static int position_bottom = 7;
 
+
+    public static final double x1_maths = 0.5;
+    public static final double x2_maths = 0.5;
+    public static double x1_current_maths = 0.15;
+    public static double x2_current_maths = 0.35;
+    public static int position_top_maths = 3;
+    public static int position_bottom_maths = 7;
 }
