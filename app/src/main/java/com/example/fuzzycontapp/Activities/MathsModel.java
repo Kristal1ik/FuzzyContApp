@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.fuzzycontapp.Fragments.MathsFragment;
 
@@ -58,7 +59,6 @@ public class MathsModel extends AppCompatActivity {
                 System.out.println(ChartArrays.XXX);
                 System.out.println(ChartArrays.VVV);
                 System.out.println(ChartArrays.WWW);
-                System.out.println(ChartArrays.TIME);
 
                 startActivity(intent);
             }
@@ -67,12 +67,38 @@ public class MathsModel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(MathsModel.this, R.style.BottomSheetDialogTheme);
-                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.dialog, (LinearLayout)findViewById(R.id.container));
-                SeekBar seekBar_sens = bottomSheetView.findViewById(R.id.seekbar_sensitivity);
-                seekBar_sens.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.dialog_maths, (LinearLayout)findViewById(R.id.container));
+                SeekBar seekBar_bottom = bottomSheetView.findViewById(R.id.seekbar_bottom);
+                SeekBar seekBar_top = bottomSheetView.findViewById(R.id.seekbar_top);
+
+                TextView bottom_pr = bottomSheetView.findViewById(R.id.bottom);
+                TextView top_pr = bottomSheetView.findViewById(R.id.top);
+
+
+                seekBar_bottom.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        System.out.println(progress);
+                        Const.x2_current_maths  = (Const.x2_maths  * (progress * 5)) / 50;
+                        bottom_pr.setText(Const.x2_current_maths  + "m");
+                        Const.position_bottom_maths = progress;
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                seekBar_top.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        Const.x1_current_maths = (Const.x1_maths * (progress * 5)) / 50;
+                        top_pr.setText(Const.x1_current_maths + "m");
+                        Const.position_top_maths = progress;
                     }
 
                     @Override
