@@ -33,4 +33,5 @@
     <string name="mass">Масса</string>
     <string name="bottom_border">Нижняя граница</string>
     <string name="top_border">Верхняя граница</string>
+    <string name="save_to_camera_roll">Сохранить в фотопленку</string>
 </resources>
