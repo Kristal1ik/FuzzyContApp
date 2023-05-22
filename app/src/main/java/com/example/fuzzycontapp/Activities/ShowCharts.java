@@ -50,20 +50,22 @@ public class ShowCharts extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(ShowCharts.this, new String[]{WRITE_EXTERNAL_STORAGE}, 1);
+        if(ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(ShowCharts.this, new String[] { WRITE_EXTERNAL_STORAGE}, 1);
         }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(ShowCharts.this, new String[]{WRITE_EXTERNAL_STORAGE}, 1);
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(ShowCharts.this, new String[] { WRITE_EXTERNAL_STORAGE }, 1);
         }
 
         ArrayList<Entry> entriesFirst = new ArrayList<>();
         ArrayList<Entry> entriesSecond = new ArrayList<>();
         ArrayList<Entry> entriesThird = new ArrayList<>();
         System.out.println(ChartArrays.WWW);
-        for (int i = 0; i < ChartArrays.XXX.size(); i++) {
+        for (int i=0; i< ChartArrays.XXX.size(); i++){
             entriesFirst.add(new Entry(ChartArrays.TIME.get(i), ChartArrays.XXX.get(i)));
             entriesSecond.add(new Entry(ChartArrays.TIME.get(i), ChartArrays.VVV.get(i)));
             entriesThird.add(new Entry(ChartArrays.TIME.get(i), ChartArrays.WWW.get(i)));
@@ -121,6 +123,39 @@ public class ShowCharts extends AppCompatActivity {
         binding.chartXxx.animateY(1000);
         binding.chartVvv.animateY(2000);
         binding.chartWww.animateY(3000);
+
+        binding.save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.chartXxx.saveToGallery("XChart", 85);
+                binding.chartXxx.setSaveEnabled(true);
+                binding.chartVvv.saveToGallery("VChart", 85);
+                binding.chartVvv.setSaveEnabled(true);
+                binding.chartWww.saveToGallery("WChart", 85);
+                binding.chartWww.setSaveEnabled(true);
+
+                Toast.makeText(getApplicationContext(), "graph saved ", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 1){
+            boolean ok = true;
+            int length = permissions.length;
+            for (int i = 0; i < length; i++) {
+                String permission = permissions[i];
+                if(grantResults[i] != PERMISSION_GRANTED){
+                    Log.d(TAG, "onRequestPermissionsResult: missing permission " + permission);
+                    ok = false;
+                }
+            }
+            if(ok){
+                System.out.println("everything is ok!");
+            }
+
+        }
 
     }
 
