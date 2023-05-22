@@ -65,12 +65,6 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         bmp = new ArrayList<Bitmap>();
         categoryRows = new ArrayList<>();
         bmp2 = new ArrayList<ArrayList<Bitmap>>();
@@ -89,25 +83,29 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             e.printStackTrace();
         }
 
+        System.out.println(rule_models.size() + "rule_models");
+        collect_img();
+        setRule_models();
+        System.out.println(rule_models.size() + "rule_models");
         setUpCategories();
         CategoriesAdapter adapter = new CategoriesAdapter(this.getContext(), categoryRows, this);
         binding.rviewCateg.setAdapter(adapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.rviewCateg.setLayoutManager(linearLayoutManager);
 
-        ThreadSetBase threadSetBase = new ThreadSetBase();
-        threadSetBase.start();
-        try {
-            threadSetBase.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        ThreadSetBase threadSetBase = new ThreadSetBase();
+//        threadSetBase.start();
+//        try {
+//            threadSetBase.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
 
         Rules_Adapter rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
+
         binding.rviewRules.setAdapter(rules_adapter);
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
-        binding.rviewRules.setLayoutManager(linearLayoutManager2);
+        binding.rviewRules.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.HORIZONTAL, false ));
 
         binding.read.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,6 +116,13 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
                 fm.commit();
             }
         });
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
 
@@ -159,13 +164,13 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
     }
 
 
-    static class ThreadSetBase extends Thread {
-        @Override
-        public void run() {
-            collect_img();
-            setRule_models();
-        }
-    }
+//    static class ThreadSetBase extends Thread {
+//        @Override
+//        public void run() {
+//            collect_img();
+//            setRule_models();
+//        }
+//    }
 
     static private void setRule_models() {
         System.out.println(bmp2.size());
