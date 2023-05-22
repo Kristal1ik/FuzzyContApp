@@ -72,6 +72,7 @@ public class Optimization extends AppCompatActivity {
                 request.put("x_finish", x_finish);
                 request.put("iterations", iterations);
                 request.put("step", step);
+                request.put("type", "public");
 
             } catch (JSONException e) {
                 e.printStackTrace();
