@@ -52,14 +52,14 @@
                 android:layout_gravity="center"
                 android:textColor="@color/white" />
 
-                <ToggleButton
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10sp"
-                    android:textOn=""
-                    android:textOff=""
-                    android:background="@drawable/toggle_selector"
-                    />
+<!--                <ToggleButton-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10sp"-->
+<!--                    android:textOn=""-->
+<!--                    android:textOff=""-->
+<!--                    android:background="@drawable/toggle_selector"-->
+<!--                    />-->
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
