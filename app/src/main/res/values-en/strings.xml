@@ -33,5 +33,6 @@
     <string name="mass">Mass</string>
     <string name="bottom_border">Bottom border</string>
     <string name="top_border">Top border</string>
+    <string name="save_to_camera_roll">Save to camera roll</string>
 
 </resources>
