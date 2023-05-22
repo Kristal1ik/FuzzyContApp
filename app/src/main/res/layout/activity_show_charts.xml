@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/lPar"
     android:layout_height="match_parent"
     tools:context=".Activities.ShowCharts">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -23,11 +24,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/chart_xxx"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
-                    android:layout_margin="16dp"/>
+                    android:layout_margin="16dp">
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:text="x, m" />-->
+                </com.github.mikephil.charting.charts.LineChart>
                 <com.github.mikephil.charting.charts.LineChart
                     android:id="@+id/chart_vvv"
                     android:layout_width="match_parent"
@@ -38,6 +48,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
                     android:layout_margin="16dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/lav1"
+                    android:textColor="@color/white"
+                    android:text="@string/save_to_camera_roll" />
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
