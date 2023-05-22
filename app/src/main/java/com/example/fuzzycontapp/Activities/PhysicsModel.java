@@ -1,6 +1,7 @@
 package com.example.fuzzycontapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,6 +20,7 @@ public class PhysicsModel extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPhysicsModelBinding.inflate(getLayoutInflater());
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.blue));
         View view = binding.getRoot();
         setContentView(view);
         setFragment(new ChooseBluetooth());
