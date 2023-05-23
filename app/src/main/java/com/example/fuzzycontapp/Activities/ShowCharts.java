@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
@@ -134,7 +135,9 @@ public class ShowCharts extends AppCompatActivity {
                 binding.chartWww.saveToGallery("WChart", 85);
                 binding.chartWww.setSaveEnabled(true);
 
-                Toast.makeText(getApplicationContext(), "graph saved ", Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(getApplicationContext(), "charts are saved", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
             }
         });
     }
