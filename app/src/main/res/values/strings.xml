@@ -33,5 +33,16 @@
     <string name="mass">Масса</string>
     <string name="bottom_border">Нижняя граница</string>
     <string name="top_border">Верхняя граница</string>
-    <string name="save_to_camera_roll">Сохранить в фотопленку</string>
+    <string name="save_to_camera_roll">Сохранить в галерею</string>
+    <string name="saved">Оптимизация началась…</string>
+    <string name="optimization">Оптимизация</string>
+    <string name="accelerometer">Акселерометер</string>
+    <string name="maths_model">Математическая модель</string>
+    <string name="physics_model">Физическая модель</string>
+    <string name="charts_saved">Графики сохранены!</string>
+    <string name="start">Start</string>
+    <string name="up">ВВЕРХ</string>
+    <string name="down">ВНИЗ</string>
+    <string name="STOP">СТОП</string>
+
 </resources>
