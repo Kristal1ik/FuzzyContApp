@@ -34,5 +34,14 @@
     <string name="bottom_border">Bottom border</string>
     <string name="top_border">Top border</string>
     <string name="save_to_camera_roll">Save to camera roll</string>
-
+    <string name="saved">The optimization has begun…</string>
+    <string name="optimization">Optimization</string>
+    <string name="accelerometer">Accelerometer</string>
+    <string name="maths_model">Maths model </string>
+    <string name="physics_model">Physics model</string>
+    <string name="charts_saved">The charts are saved!</string>
+    <string name="start">Start</string>
+    <string name="up">UP</string>
+    <string name="down">DOWN</string>
+    <string name="stop">STOP</string>
 </resources>
