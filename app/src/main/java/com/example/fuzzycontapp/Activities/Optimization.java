@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.databinding.ActivityOptimizationBinding;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,7 +30,9 @@ public class Optimization extends AppCompatActivity {
         binding = ActivityOptimizationBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        setSupportActionBar(binding.toolbar);
+        setTitle(R.string.optimization);
+        getSupportActionBar().setTitle("sdfg");
         binding.optim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,13 +41,15 @@ public class Optimization extends AppCompatActivity {
                 x_finish = binding.xFinish.getText().toString();
                 iterations = binding.iterations.getText().toString();
                 step = binding.step.getText().toString();
+                SendData sendData = new SendData();
+                sendData.start();
                 binding.name.setText("");
                 binding.xStart.setText("");
                 binding.xFinish.setText("");
                 binding.iterations.setText("");
                 binding.step.setText("");
-                SendData sendData = new SendData();
-                sendData.start();
+                Toast.makeText(Optimization.this, R.string.saved, Toast.LENGTH_SHORT).show();
+
             }
         });
         binding.back.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +58,6 @@ public class Optimization extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
     }
 
 
