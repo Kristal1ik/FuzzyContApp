@@ -38,9 +38,9 @@ public class Theory extends Fragment implements TheoryInterface {
                              Bundle savedInstanceState) {
         binding = FragmentTheoryBinding.inflate(inflater, container, false);
         dataholder = new ArrayList<>();
-        dataholder.add(new TheoryRow("Теория нечетких множеств. Алгоритм Мамдани.", R.drawable.at));
-        dataholder.add(new TheoryRow("База правил.", R.drawable.at));
-        dataholder.add(new TheoryRow("Фаззификация. Функция принадлежности.", R.drawable.at));
+        dataholder.add(new TheoryRow("Теория нечетких множеств. Алгоритм Мамдани.", R.drawable.pic));
+        dataholder.add(new TheoryRow("База правил.", R.drawable.pic));
+        dataholder.add(new TheoryRow("Фаззификация. Функция принадлежности.", R.drawable.pic));
 
 
         binding.rview.setAdapter(new TheoryAdapter(dataholder, this));
