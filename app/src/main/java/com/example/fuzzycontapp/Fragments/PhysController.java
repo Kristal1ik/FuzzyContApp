@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
@@ -37,16 +38,30 @@ public class PhysController extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentPhysControllerBinding.inflate(inflater, container, false);
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BTHandler handler = new BTHandler(binding.send.getText().toString());
+                BTHandler handler = new BTHandler(new String("1"));
                 handler.start();
 
+            }
+        });
+        binding.down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BTHandler handler = new BTHandler(new String("0"));
+                handler.start();
+            }
+        });
+        binding.stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BTHandler handler = new BTHandler(new String("2"));
+                handler.start();
             }
         });
         return binding.getRoot();
