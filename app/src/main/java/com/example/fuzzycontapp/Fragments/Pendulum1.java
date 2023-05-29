@@ -60,14 +60,25 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
         usernames = new ArrayList<>();
         base_rules = new ArrayList<>();
         id = new ArrayList<>();
+
         System.out.println(rule_models.size() + "rule_models");
-        collect_img();
-        setRule_models();
+//        collect_img();
+//        setRule_models();
+        ThreadSetBase threadSetBase = new ThreadSetBase();
+        threadSetBase.start();
+        try {
+            threadSetBase.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println(rule_models.size() + "rule_models");
 
         Rules_Adapter rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
         binding.recyclerViewRules.setAdapter(rules_adapter);
         binding.recyclerViewRules.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+
+
         return binding.getRoot();
     }
 
@@ -93,7 +104,7 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
     static private void setRule_models(){
         System.out.println(bmp.size());
         for (int i = 0; i<usernames.size(); i++){
-            System.out.println(i);
+            System.out.println(i + "aaaa");
             rule_models.add(new Rule_model(usernames.get(i), bmp.get(i), base_rules.get(i), id.get(i)));
         }
     }
@@ -138,12 +149,10 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
                         bmp.get(i).add(conv_bitmap(get_img(s2)));
                     }
                 }
-            } catch (JSONException e) {
+            } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }}
+        }
         return bmp;
     }
     static public Bitmap conv_bitmap(String str_img){
