@@ -39,6 +39,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ShowCharts extends AppCompatActivity {
     ActivityShowChartsBinding binding;
@@ -128,11 +129,11 @@ public class ShowCharts extends AppCompatActivity {
         binding.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.chartXxx.saveToGallery("XChart", 85);
+                binding.chartXxx.saveToGallery(Calendar.getInstance().getTime().toString() + "xChart", 85);
                 binding.chartXxx.setSaveEnabled(true);
-                binding.chartVvv.saveToGallery("VChart", 85);
+                binding.chartVvv.saveToGallery(Calendar.getInstance().getTime().toString() + "vChart", 85);
                 binding.chartVvv.setSaveEnabled(true);
-                binding.chartWww.saveToGallery("WChart", 85);
+                binding.chartWww.saveToGallery(Calendar.getInstance().getTime().toString() + "wChart", 85);
                 binding.chartWww.setSaveEnabled(true);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "charts are saved", Toast.LENGTH_SHORT);
