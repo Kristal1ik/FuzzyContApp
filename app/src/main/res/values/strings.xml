@@ -40,9 +40,15 @@
     <string name="maths_model">Математическая модель</string>
     <string name="physics_model">Физическая модель</string>
     <string name="charts_saved">Графики сохранены!</string>
-    <string name="start">Start</string>
+    <string name="start">Старт</string>
     <string name="up">ВВЕРХ</string>
     <string name="down">ВНИЗ</string>
-    <string name="STOP">СТОП</string>
-
+    <string name="stop">СТОП</string>
+    <string name="basin_hopping">Basin Hopping</string>
+    <string name="genetic_algorithm">Genetic Algorithm</string>
+    <string name="x1">Верхняя граница</string>
+    <string name="x2">Нижняя граница</string>
+    <string name="individuals">Особи</string>
+    <string name="generations">Поколения</string>
+    <string name="title">Название</string>
 </resources>
