@@ -1,6 +1,7 @@
 package com.example.fuzzycontapp.Fragments;
 
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +60,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
     private ArrayList<String> usernames = new ArrayList<>();
     private ArrayList<String> base_rules = new ArrayList<>();
     private ArrayList<Integer> id = new ArrayList<>();
-    public static ArrayList<Rule_model> rule_models;
+    public static ArrayList<Rule_model> rule_models = new ArrayList<>();
     private Rules_Adapter rules_adapter;
     int[] categoryImg = {R.drawable.c_acc, R.drawable.c_optim, R.drawable.c_pend, R.drawable.c_pend_rules};
 
@@ -74,11 +76,6 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         user_img = new ArrayList<Bitmap>();
         categoryRows = new ArrayList<>();
 
-        bmp = new ArrayList<ArrayList<Bitmap>>();
-        usernames = new ArrayList<>();
-        base_rules = new ArrayList<>();
-        id = new ArrayList<>();
-        rule_models = new ArrayList<>();
         try {
             getImg();
             System.out.println(user_img.size() + "hjk");
@@ -89,20 +86,28 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                Message msg = handler.obtainMessage();
-                collect_img();
-                setRule_models();
-                handler.sendMessage(msg);
+        try {
+            if (!(Global.GLOBAL_RULES == get_rules_count())){
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        bmp = new ArrayList<ArrayList<Bitmap>>();
+                        usernames = new ArrayList<>();
+                        base_rules = new ArrayList<>();
+                        id = new ArrayList<>();
+                        rule_models = new ArrayList<>();
+                        Message msg = handler.obtainMessage();
+                        collect_img();
+                        setRule_models();
+                        handler.sendMessage(msg);
+                    }
+                };
+                Thread thread = new Thread(runnable);
+                thread.start();
             }
-        };
-
-        Thread thread = new Thread(runnable);
-        thread.start();
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         System.out.println(rule_models.size() + "rule_models");
         setUpCategories();
@@ -199,6 +204,8 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
             JSONObject request = new JSONObject();
+            Log.i(TAG, "Кот нажал на кнопку");
+
             try {
                 request.put("Command", "get_base");
                 request.put("StartIdx", 0);
@@ -206,6 +213,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            Log.i(TAG, "Кот нажал на кнопку1");
 
             output.println(request);
             output.flush();
@@ -257,10 +265,10 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             jsonObject = new JSONObject(img);
             int n = jsonObject.getInt("Parts");
             for (int i = 0; i < n; i++) {
-                while (!input.ready()) ;
+                while (!input.ready());
                 String readed = String.valueOf(input.readLine());
-                output.println("{\"Status\": \"OK\"}");
-                output.flush();
+//                output.println("{\"Status\": \"OK\"}");
+//                output.flush();
                 JSONObject input_json = new JSONObject(readed);
                 enc_img.append(input_json.get("SplittedData"));
             }
@@ -288,6 +296,33 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             output.println(request);
             output.flush();
         }
+    }
+    public static Integer get_rules_count() throws IOException {
+        int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
+        int n = 0;
+        if (SDK_INT > 8) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            JSONObject request = new JSONObject();
+            try {
+                request.put("Command", "get_rules_count");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            output.println(request);
+            output.flush();
+
+            while (!input.ready()) ;
+            try {
+                n = new JSONObject(input.readLine()).getInt("RulesCount");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return n;
     }
 
 
