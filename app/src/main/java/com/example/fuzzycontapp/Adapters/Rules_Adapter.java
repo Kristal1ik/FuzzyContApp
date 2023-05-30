@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -72,4 +73,5 @@ public class Rules_Adapter extends RecyclerView.Adapter<Rules_Adapter.Rules_View
             });
         }
     }
+
 }
