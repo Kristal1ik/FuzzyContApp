@@ -10,4 +10,5 @@ public class Global {
     public static boolean TO_READ = false;
     public static int THEORY_NUMBER;
     public static String ADDRESS;
+    public static int GLOBAL_RULES = 0;
 }
