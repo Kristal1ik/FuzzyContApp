@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Activities.HomePageActivity">
@@ -180,6 +180,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rules"
                     app:layout_constraintBottom_toBottomOf="@id/cl"/>
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:indeterminateTint="@color/purple_700"
+                    app:layout_constraintBottom_toBottomOf="@+id/rview_rules"
+                    app:layout_constraintEnd_toEndOf="@+id/rview_rules"
+                    app:layout_constraintStart_toStartOf="@+id/rview_rules"
+                    app:layout_constraintTop_toTopOf="@+id/rview_rules">
+                </ProgressBar>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
