@@ -34,14 +34,17 @@ public class MainActivity extends AppCompatActivity {
     MainAdapter mainAdapter;
     MyThread myThread;
 
+    @RequiresApi(api = Build.VERSION_CODES.S)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
         Resources resources = getApplicationContext().getResources();
         int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
         System.out.println(resourceId);
+
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.login));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.signup));
 
@@ -69,12 +72,9 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         mainAdapter = new MainAdapter(fragmentManager, getLifecycle());
         binding.viewPager.setAdapter(mainAdapter);
-
-
     }
     public static class MyThread implements Runnable{
         public static Socket sock;
@@ -92,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 input = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
                 output = new PrintWriter(sock.getOutputStream());
                 charb = CharBuffer.allocate(100000);
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
