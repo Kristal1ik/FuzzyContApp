@@ -4,6 +4,7 @@ package com.example.fuzzycontapp.Fragments;
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,7 +15,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,18 +48,18 @@ import java.io.IOException;
 import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment implements PageRuleInterface, PageCategoryInterface {
     FragmentHomeBinding binding;
-    public static ArrayList<Bitmap> user_img;
-    ArrayList<CategoryRow> categoryRows;
-
-    static ArrayList<ArrayList<Bitmap>> bmp = new ArrayList<ArrayList<Bitmap>>();
-    static ArrayList<String> usernames = new ArrayList<>();
-    static ArrayList<String> base_rules = new ArrayList<>();
-    static ArrayList<Integer> id = new ArrayList<>();
+    public ArrayList<Bitmap> user_img;
+    private ArrayList<CategoryRow> categoryRows;
+    private ArrayList<ArrayList<Bitmap>> bmp = new ArrayList<ArrayList<Bitmap>>();
+    private ArrayList<String> usernames = new ArrayList<>();
+    private ArrayList<String> base_rules = new ArrayList<>();
+    private ArrayList<Integer> id = new ArrayList<>();
     public static ArrayList<Rule_model> rule_models;
-
+    private Rules_Adapter rules_adapter;
     int[] categoryImg = {R.drawable.c_acc, R.drawable.c_optim, R.drawable.c_pend, R.drawable.c_pend_rules};
 
     @Override
@@ -69,7 +73,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         user_img = new ArrayList<Bitmap>();
         categoryRows = new ArrayList<>();
-        
+
         bmp = new ArrayList<ArrayList<Bitmap>>();
         usernames = new ArrayList<>();
         base_rules = new ArrayList<>();
@@ -86,15 +90,20 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             e.printStackTrace();
         }
 
-        ThreadSetBase threadSetBase = new ThreadSetBase();
-        threadSetBase.start();
-        try {
-            threadSetBase.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-//        collect_img();
-//        setRule_models();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Message msg = handler.obtainMessage();
+                collect_img();
+                setRule_models();
+                handler.sendMessage(msg);
+            }
+        };
+
+        Thread thread = new Thread(runnable);
+        thread.start();
+
+
         System.out.println(rule_models.size() + "rule_models");
         setUpCategories();
         CategoriesAdapter adapter = new CategoriesAdapter(this.getContext(), categoryRows, this);
@@ -103,17 +112,14 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         binding.rviewCateg.setLayoutManager(linearLayoutManager);
 
 
-
-        Rules_Adapter rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
+        rules_adapter = new Rules_Adapter(this.getContext(), rule_models, this);
         binding.rviewRules.setAdapter(rules_adapter);
-        binding.rviewRules.setLayoutManager(new LinearLayoutManager(this.getContext(),LinearLayoutManager.HORIZONTAL, false ));
-
+        binding.rviewRules.setLayoutManager(new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false));
 
 
         binding.read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (((HomePageActivity)getActivity()).findViewById(R.id.bottomNavigationView)).setSelected(true);
                 FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
                 fm.replace(R.id.frame_layout, new Theory());
                 fm.commit();
@@ -127,6 +133,17 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         super.onViewCreated(view, savedInstanceState);
 
     }
+
+    @SuppressLint("HandlerLeak")
+    Handler handler = new Handler() {
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            rules_adapter.notifyDataSetChanged();
+            binding.progress.setVisibility(View.INVISIBLE);
+        }
+    };
 
 
     @Override
@@ -166,27 +183,18 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
     }
 
 
-    static class ThreadSetBase extends Thread {
-        @Override
-        public void run() {
-            collect_img();
-            setRule_models();
-        }
-    }
-
-    static private void setRule_models(){
+    private void setRule_models() {
         System.out.println(bmp.size());
-        for (int i = 0; i<usernames.size(); i++){
+        for (int i = 0; i < usernames.size(); i++) {
             System.out.println(i + "aaaa");
             rule_models.add(new Rule_model(usernames.get(i), bmp.get(i), base_rules.get(i), id.get(i)));
         }
     }
 
-    static private ArrayList<ArrayList<Bitmap>> collect_img(){
+    private ArrayList<ArrayList<Bitmap>> collect_img() {
         CharBuffer charb = CharBuffer.allocate(10000);
         int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
-        if (SDK_INT > 8)
-        {
+        if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                     .permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -202,22 +210,22 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             output.println(request);
             output.flush();
             try {
-                while(!input.ready());
+                while (!input.ready()) ;
                 String s = input.readLine();
                 charb.put(s);
                 int n = new JSONObject(new String(charb.array())).getInt("RulesCount");
                 System.out.println(n);
 
-                for (int i=0; i < n; i++){
+                for (int i = 0; i < n; i++) {
                     bmp.add(new ArrayList<Bitmap>());
-                    while(!input.ready());
+                    while (!input.ready()) ;
                     String s3 = input.readLine();
                     System.out.println(s3);
                     usernames.add(new JSONObject(s3).getString("Username"));
                     base_rules.add(new JSONObject(s3).getString("Base"));
                     id.add(new JSONObject(s3).getInt("RuleID"));
-                    for (int j=0; j < 3; j++){
-                        while(!input.ready());
+                    for (int j = 0; j < 3; j++) {
+                        while (!input.ready()) ;
                         String s2 = input.readLine();
                         System.out.println(s2);
                         bmp.get(i).add(conv_bitmap(get_img(s2)));
@@ -230,7 +238,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         return bmp;
     }
 
-    static public Bitmap conv_bitmap(String str_img){
+    static public Bitmap conv_bitmap(String str_img) {
 
         byte[] img_byte = new byte[0];
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -240,7 +248,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
 
     }
 
-    static public String get_img(String img){
+    static public String get_img(String img) {
         System.out.println("AAAAAAAAAAAAAAAAAAAAA");
         JSONObject jsonObject;
         StringBuilder enc_img = new StringBuilder();
@@ -248,12 +256,11 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             System.out.println(" q " + img + "q");
             jsonObject = new JSONObject(img);
             int n = jsonObject.getInt("Parts");
-            for (int i=0; i < n; i++){
-                while (!input.ready());
+            for (int i = 0; i < n; i++) {
+                while (!input.ready()) ;
                 String readed = String.valueOf(input.readLine());
                 output.println("{\"Status\": \"OK\"}");
                 output.flush();
-//                System.out.println("qq"+readed);
                 JSONObject input_json = new JSONObject(readed);
                 enc_img.append(input_json.get("SplittedData"));
             }
