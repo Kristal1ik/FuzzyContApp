@@ -4,6 +4,7 @@ import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
 import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fuzzycontapp.Adapters.MainAdapter;
+import com.example.fuzzycontapp.Adapters.OptimAdapter;
 import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.databinding.ActivityOptimizationBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -23,6 +26,7 @@ import java.io.IOException;
 
 public class Optimization extends AppCompatActivity {
     ActivityOptimizationBinding binding;
+    OptimAdapter mainAdapter;
     public static String title, x_start, x_finish, iterations, step;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,28 +34,45 @@ public class Optimization extends AppCompatActivity {
         binding = ActivityOptimizationBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        setSupportActionBar(binding.toolbar);
-        setTitle(R.string.optimization);
-        getSupportActionBar().setTitle("sdfg");
-        binding.optim.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                title = binding.name.getText().toString();
-                x_start = binding.xStart.getText().toString();
-                x_finish = binding.xFinish.getText().toString();
-                iterations = binding.iterations.getText().toString();
-                step = binding.step.getText().toString();
-                SendData sendData = new SendData();
-                sendData.start();
-                binding.name.setText("");
-                binding.xStart.setText("");
-                binding.xFinish.setText("");
-                binding.iterations.setText("");
-                binding.step.setText("");
-                Toast.makeText(Optimization.this, R.string.saved, Toast.LENGTH_SHORT).show();
 
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.genetic_algorithm));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.basin_hopping));
+
+        binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                binding.viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        mainAdapter = new OptimAdapter(fragmentManager, getLifecycle());
+        binding.viewPager.setAdapter(mainAdapter);
+
+//        binding.optim.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                title = binding.name.getText().toString();
+//                x_start = binding.xStart.getText().toString();
+//                x_finish = binding.xFinish.getText().toString();
+//                iterations = binding.iterations.getText().toString();
+//                step = binding.step.getText().toString();
+//                SendData sendData = new SendData();
+//                sendData.start();
+//                binding.name.setText("");
+//                binding.xStart.setText("");
+//                binding.xFinish.setText("");
+//                binding.iterations.setText("");
+//                binding.step.setText("");
+//                Toast.makeText(Optimization.this, R.string.saved, Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
