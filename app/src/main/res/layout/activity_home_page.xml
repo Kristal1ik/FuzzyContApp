@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/lav1"
-            android:src="@drawable/add"
+            android:src="@drawable/question"
             app:rippleColor="@color/white"
             app:layout_anchor="@id/bottomAppBar"
             app:maxImageSize="30dp"
