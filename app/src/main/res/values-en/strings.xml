@@ -44,4 +44,11 @@
     <string name="up">UP</string>
     <string name="down">DOWN</string>
     <string name="stop">STOP</string>
+    <string name="basin_hopping">Basin Hopping</string>
+    <string name="genetic_algorithm">Genetic Algorithm</string>
+    <string name="x1">Top border</string>
+    <string name="x2">Bottom border</string>
+    <string name="individuals">Individuals</string>
+    <string name="generations">Generations</string>
+    <string name="title">Title</string>
 </resources>
