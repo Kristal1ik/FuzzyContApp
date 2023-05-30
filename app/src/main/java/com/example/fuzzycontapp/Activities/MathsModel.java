@@ -74,7 +74,11 @@ public class MathsModel extends AppCompatActivity {
                 TextView bottom_pr = bottomSheetView.findViewById(R.id.bottom);
                 TextView top_pr = bottomSheetView.findViewById(R.id.top);
 
+                seekBar_bottom.setProgress(Const.position_bottom);
+                bottom_pr.setText(Const.x2_current_maths + "m");
 
+                seekBar_top.setProgress(Const.position_top);
+                top_pr.setText(Const.x1_current_maths + "m");
                 seekBar_bottom.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
