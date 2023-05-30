@@ -57,7 +57,7 @@ public class ShowCharts extends AppCompatActivity {
         {
             ActivityCompat.requestPermissions(ShowCharts.this, new String[] { WRITE_EXTERNAL_STORAGE}, 1);
         }
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
+        if(ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(ShowCharts.this, new String[] { WRITE_EXTERNAL_STORAGE }, 1);
@@ -129,11 +129,11 @@ public class ShowCharts extends AppCompatActivity {
         binding.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.chartXxx.saveToGallery(Calendar.getInstance().getTime().toString() + "xChart", 85);
+                binding.chartXxx.saveToGallery(Calendar.getInstance().getTime().toString().replaceAll(":", ".") + "xChart", 85);
                 binding.chartXxx.setSaveEnabled(true);
-                binding.chartVvv.saveToGallery(Calendar.getInstance().getTime().toString() + "vChart", 85);
+                binding.chartVvv.saveToGallery(Calendar.getInstance().getTime().toString().replaceAll(":", ".") + "vChart", 85);
                 binding.chartVvv.setSaveEnabled(true);
-                binding.chartWww.saveToGallery(Calendar.getInstance().getTime().toString() + "wChart", 85);
+                binding.chartWww.saveToGallery(Calendar.getInstance().getTime().toString().replaceAll(":", ".") + "wChart", 85);
                 binding.chartWww.setSaveEnabled(true);
 
                 Toast toast = Toast.makeText(getApplicationContext(), "charts are saved", Toast.LENGTH_SHORT);
