@@ -51,4 +51,6 @@
     <string name="individuals">Особи</string>
     <string name="generations">Поколения</string>
     <string name="title">Название</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
