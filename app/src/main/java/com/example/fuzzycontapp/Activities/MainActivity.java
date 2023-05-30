@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(resourceId);
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.login));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.signup));
+
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT)
                 != PackageManager.PERMISSION_GRANTED)
         {
@@ -98,23 +99,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    public boolean showNavigationBar(Resources resources)
-    {
-        int id = resources.getIdentifier("config_showNavigationBar", "bool", "android");
-        return id > 0 && resources.getBoolean(id);
-    }
-    private int getNavigationBarHeight() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            DisplayMetrics metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            int usableHeight = metrics.heightPixels;
-            getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
-            int realHeight = metrics.heightPixels;
-            if (realHeight > usableHeight)
-                return realHeight - usableHeight;
-            else
-                return 0;
-        }
-        return 0;
-    }
+
 }
