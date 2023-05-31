@@ -1,5 +1,9 @@
 package com.example.fuzzycontapp.Activities;
 
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.checkSock;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.input;
+import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.sock;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,6 +28,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
@@ -33,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     MainAdapter mainAdapter;
     MyThread myThread;
+    static ThreadConnection threadConnection;
 
     @RequiresApi(api = Build.VERSION_CODES.S)
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
         Resources resources = getApplicationContext().getResources();
         int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
         System.out.println(resourceId);
@@ -60,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
         myThread = new MyThread();
         new Thread(myThread).start();
+
         binding.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -77,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         binding.viewPager.setAdapter(mainAdapter);
     }
     public static class MyThread implements Runnable{
-        public static Socket sock;
+        public static Socket sock, checkSock;
         public static PrintWriter output;
         public static BufferedReader input;
         public static CharBuffer charb;
@@ -89,13 +95,33 @@ public class MainActivity extends AppCompatActivity {
                 sock = new Socket("46.242.119.144", 22345);
                 sock.setSendBufferSize(100000);
                 sock.setReceiveBufferSize(100000);
+
+//                checkSock = new Socket();
+//                checkSock.bind(new InetSocketAddress("46.242.119.144", 22344));
+//                checkSock.setSendBufferSize(100000);
+//                checkSock.setReceiveBufferSize(100000);
+
                 input = new BufferedReader(new InputStreamReader(sock.getInputStream(), StandardCharsets.UTF_8));
                 output = new PrintWriter(sock.getOutputStream());
                 charb = CharBuffer.allocate(100000);
+                threadConnection = new ThreadConnection();
+                new Thread(threadConnection).start();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
+    public static class ThreadConnection implements Runnable{
+        @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+        @Override
+        public void run() {
+//            while (true){
+//                try {
+//                    checkSock = new Socket("46.242.119.144", 22345);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+        }
+    }
 }
