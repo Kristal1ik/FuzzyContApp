@@ -75,28 +75,32 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         user_img = new ArrayList<Bitmap>();
         categoryRows = new ArrayList<>();
-
-        try {
-            getImg();
-            System.out.println(user_img.size() + "hjk");
-            Global.IMG = user_img.get(0);
-            binding.ava.setImageBitmap(user_img.get(0));
-            binding.hi.setText("Hi, " + Global.USERNAME);
-            binding.slogan.setText(Global.EMAIL);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (Global.IMG == null) {
+            try {
+                getImg();
+                binding.ava.setImageBitmap(Global.IMG);
+//                Global.IMG_BOOL = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+        else{
+            binding.ava.setImageBitmap(Global.IMG);
+        }
+        binding.hi.setText("Hi, " + Global.USERNAME);
+        binding.slogan.setText(Global.EMAIL);
         try {
             if (!(Global.GLOBAL_RULES == get_rules_count())){
+                Message msg = handler.obtainMessage();
                 Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
+
                         bmp = new ArrayList<ArrayList<Bitmap>>();
                         usernames = new ArrayList<>();
                         base_rules = new ArrayList<>();
                         id = new ArrayList<>();
                         rule_models = new ArrayList<>();
-                        Message msg = handler.obtainMessage();
                         collect_img();
                         setRule_models();
                         handler.sendMessage(msg);
@@ -104,6 +108,10 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
                 };
                 Thread thread = new Thread(runnable);
                 thread.start();
+            }
+            else{
+                binding.progress.setVisibility(View.INVISIBLE);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,8 +153,14 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+//            if (Global.IMG_BOOL){
+//                binding.ava.setImageBitmap(user_img.get(0));
+//                Global.IMG_BOOL = false;
+//
+//            }
             rules_adapter.notifyDataSetChanged();
             binding.progress.setVisibility(View.INVISIBLE);
+
         }
     };
 
@@ -356,6 +370,9 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             System.out.println(s2);
             user_img.add(conv_bitmap(get_img(s2)));
         }
+        System.out.println(user_img);
+        System.out.println(user_img.size() + " ff");
+        Global.IMG = user_img.get(0);
         return user_img;
     }
 }
