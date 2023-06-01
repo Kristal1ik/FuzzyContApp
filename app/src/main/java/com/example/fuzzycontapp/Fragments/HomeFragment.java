@@ -75,6 +75,13 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         user_img = new ArrayList<Bitmap>();
         categoryRows = new ArrayList<>();
+//        try {
+//            System.out.println(get_saved_rules_count() + "saved rules");
+//            System.out.println(get_my_rules_count() + "my rules");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
         if (Global.IMG == null) {
             try {
                 getImg();
@@ -83,14 +90,21 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             binding.ava.setImageBitmap(Global.IMG);
         }
         binding.hi.setText("Hi, " + Global.USERNAME);
         binding.slogan.setText(Global.EMAIL);
+        int rules_count = 0;
         try {
-            if (!(Global.GLOBAL_RULES == get_rules_count())){
+            rules_count = get_rules_count();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (!(Global.GLOBAL_RULES == rules_count)) {
+                Global.GLOBAL_RULES = rules_count;
+                System.out.println(get_rules_count() + " sdfgbhngfdfghjg");
                 Message msg = handler.obtainMessage();
                 Runnable runnable = new Runnable() {
                     @Override
@@ -108,8 +122,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
                 };
                 Thread thread = new Thread(runnable);
                 thread.start();
-            }
-            else{
+            } else {
                 binding.progress.setVisibility(View.INVISIBLE);
 
             }
@@ -279,7 +292,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             jsonObject = new JSONObject(img);
             int n = jsonObject.getInt("Parts");
             for (int i = 0; i < n; i++) {
-                while (!input.ready());
+                while (!input.ready()) ;
                 String readed = String.valueOf(input.readLine());
 //                output.println("{\"Status\": \"OK\"}");
 //                output.flush();
@@ -311,6 +324,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             output.flush();
         }
     }
+
     public static Integer get_rules_count() throws IOException {
         int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
         int n = 0;
@@ -374,5 +388,65 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         System.out.println(user_img.size() + " ff");
         Global.IMG = user_img.get(0);
         return user_img;
+    }
+
+
+
+
+    public static Integer get_saved_rules_count() throws IOException {
+        int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
+        int n = 0;
+        if (SDK_INT > 8) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            JSONObject request = new JSONObject();
+            try {
+                request.put("Command", "get_saved_rules_count");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            output.println(request);
+            output.flush();
+
+            while (!input.ready()) ;
+            try {
+                n = new JSONObject(input.readLine()).getInt("RulesCount");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return n;
+    }
+
+
+    public static Integer get_my_rules_count() throws IOException {
+        int SDK_INT = android.os.Build.VERSION.SDK_INT; // check
+        int n = 0;
+        if (SDK_INT > 8) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            JSONObject request = new JSONObject();
+            try {
+                request.put("Command", "get_my_rules_count");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            output.println(request);
+            output.flush();
+
+            while (!input.ready()) ;
+            try {
+                n = new JSONObject(input.readLine()).getInt("RulesCount");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return n;
     }
 }
