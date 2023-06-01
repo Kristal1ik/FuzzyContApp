@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/container"
+    android:layout_marginBottom="50dp"
+    android:background="@drawable/rounded_rect"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/support"
+        android:textColor="@color/blue"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="@string/support_text"
+            android:textColor="@color/lav1"/>
+        <EditText
+            android:id="@+id/user_email"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/email"
+            android:layout_margin="16dp"
+            android:inputType="textEmailAddress" />
+        <EditText
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/question"
+            android:layout_margin="16dp"
+            android:inputType="textPersonName" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/send"
+            android:background="@drawable/edit"
+            android:backgroundTint="@color/lav1"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_margin="16dp"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="@string/send" />
+    </LinearLayout>
+</LinearLayout>
