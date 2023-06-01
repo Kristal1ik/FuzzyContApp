@@ -51,4 +51,15 @@
     <string name="individuals">Individuals</string>
     <string name="generations">Generations</string>
     <string name="title">Title</string>
+    <string name="support">Support</string>
+    <string name="support_text">
+Greetings, user!
+
+Fuzzy logic is a very large and complex topic. This application contains only the necessary sections for understanding fuzzy control.
+
+You may not have enough of the presented material to fully understand the topic. If you have any questions, you can contact the developer for help 💜</string>
+    <string name="question">Your question</string>
+    <string name="send">Send</string>
+    <string name="send_question_ok">The email has been sent!</string>
+
 </resources>
