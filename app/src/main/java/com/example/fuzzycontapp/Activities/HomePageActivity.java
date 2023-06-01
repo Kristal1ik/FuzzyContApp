@@ -16,6 +16,7 @@ import android.os.StrictMode;
 import android.view.View;
 
 
+import com.example.fuzzycontapp.Fragments.DifferentRules;
 import com.example.fuzzycontapp.Fragments.HomeFragment;
 import com.example.fuzzycontapp.Fragments.MathsFragment;
 import com.example.fuzzycontapp.Fragments.Pendulum1;
@@ -56,7 +57,7 @@ public class HomePageActivity extends AppCompatActivity {
                     break;
                 }
                 case R.id.my_rules:{
-                    replace(new Pendulum1());
+                    replace(new DifferentRules());
                     break;
                 }
                 case R.id.theory:{

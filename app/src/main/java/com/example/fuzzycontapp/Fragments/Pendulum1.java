@@ -60,7 +60,6 @@ public class Pendulum1 extends Fragment implements PageRuleInterface {
         usernames = new ArrayList<>();
         base_rules = new ArrayList<>();
         id = new ArrayList<>();
-
         System.out.println(rule_models.size() + "rule_models");
 //        collect_img();
 //        setRule_models();
