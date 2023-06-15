@@ -14,5 +14,5 @@ public class Global {
     public static int GLOBAL_RULES = 0;
     public static int SAVED_RULES = 0;
     public static int MY_RULES = 0;
-    public static boolean IMG_BOOL = true;
+    public static int INFO = 0;
 }
