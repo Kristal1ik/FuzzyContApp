@@ -61,5 +61,20 @@ You may not have enough of the presented material to fully understand the topic.
     <string name="question">Your question</string>
     <string name="send">Send</string>
     <string name="send_question_ok">The email has been sent!</string>
+    <string name="iterations">Iterations</string>
+    <string name="step">Step</string>
+    <string name="info_gen">A genetic algorithm (GA) is an optimization method that uses ideas from evolutionary biology and genetics to solve problems. GA is a method that uses a random approach to generating and selecting solutions.
+
+GA works on the principle of evolution. At the beginning of the process, random solutions are created, which are called "individuals". These individuals are then evaluated based on the fitness function, which determines how well the solution works for a given task. Individuals with higher fitness have a greater chance of being selected for future generations.
+
+In the process of the genetic algorithm, each new generation is created by combining and mutating "genetic material" from previous generations. This process continues until an optimal solution is obtained.
+
+The application of a genetic algorithm can be broad - it can be a task of optimizing functions, software development, production process management, etc. GA is a useful tool for solving complex problems where traditional methods may not give quick and effective results.</string>
+    <string name="info_basin">Basin hopping is a global optimization method used to solve optimization problems that have a complex energy surface. It is based on the atomic level, and the technique is to apply meta-study to bypass a set of physical states or "basins" and find the global minimum.
+
+In the process of basin hopping, structures are mounted sequentially, which are then evaluated for likelihood and degree of energy. From here, new structures are obtained, which are used already at the next step of the algorithm as some basic preparing representation. Basin hopping, in contrast to the traditional application of the Monte Carlo algorithm, in many cases finds the optimal solution even in conditions of destructive noise or conditions of limited availability of probability information.</string>
+    <string name="saved_data">Saved</string>
+    <string name="by">By: </string>
+    <string name="logout_conf">Are you sure you want to log out?</string>
 
 </resources>
