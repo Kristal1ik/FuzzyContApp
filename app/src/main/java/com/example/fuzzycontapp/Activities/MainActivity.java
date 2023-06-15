@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         mainAdapter = new MainAdapter(fragmentManager, getLifecycle());
         binding.viewPager.setAdapter(mainAdapter);
+
+
     }
     public static class MyThread implements Runnable{
         public static Socket sock, checkSock;
