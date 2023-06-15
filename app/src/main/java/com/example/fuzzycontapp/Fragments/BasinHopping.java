@@ -35,8 +35,6 @@ public class BasinHopping extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         binding = FragmentBasinHoppingBinding.inflate(inflater, container, false);
 
         binding.optim.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +52,9 @@ public class BasinHopping extends Fragment {
                 binding.bottomBorder.setText("");
                 binding.indiv.setText("");
                 binding.gener.setText("");
+                Toast.makeText(getActivity(), R.string.saved,
+                        Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -77,7 +78,7 @@ public class BasinHopping extends Fragment {
                 request.put("iterations", iterations);
                 request.put("step", step);
                 request.put("type", "public");
-                request.put("Type", "genetic");
+                request.put("Type", "basin");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
