@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.fuzzycontapp.Fragments.BasinHopping;
+import com.example.fuzzycontapp.Fragments.GeneticAlgorithm;
 import com.example.fuzzycontapp.Fragments.Login;
 import com.example.fuzzycontapp.Fragments.SignUp;
 
@@ -20,9 +21,9 @@ public class OptimAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         if (position == 1){
-            return new SignUp();
+            return new BasinHopping();
         }
-        return new BasinHopping();
+        return new GeneticAlgorithm();
     }
 
     @Override
