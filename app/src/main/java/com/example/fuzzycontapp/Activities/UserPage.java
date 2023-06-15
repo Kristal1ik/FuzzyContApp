@@ -7,8 +7,10 @@ import static com.example.fuzzycontapp.Activities.MainActivity.MyThread.output;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.net.Uri;
@@ -16,8 +18,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 
+import com.example.fuzzycontapp.R;
 import com.example.fuzzycontapp.databinding.ActivityUserPageBinding;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 
@@ -89,7 +94,17 @@ public class UserPage extends AppCompatActivity {
         binding.logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
+                    alertDialog.setTitle(R.string.logout_conf);
+                    alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            logout();
+                        }
+                    });
+                    alertDialog.show();
+                }
             }
         });
     }
