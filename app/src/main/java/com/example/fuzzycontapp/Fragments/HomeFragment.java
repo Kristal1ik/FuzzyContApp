@@ -166,11 +166,6 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-//            if (Global.IMG_BOOL){
-//                binding.ava.setImageBitmap(user_img.get(0));
-//                Global.IMG_BOOL = false;
-//
-//            }
             rules_adapter.notifyDataSetChanged();
             binding.progress.setVisibility(View.INVISIBLE);
 
@@ -236,7 +231,7 @@ public class HomeFragment extends Fragment implements PageRuleInterface, PageCat
             try {
                 request.put("Command", "get_base");
                 request.put("StartIdx", 0);
-                request.put("EndIdx", 10);
+                request.put("EndIdx", 15);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
