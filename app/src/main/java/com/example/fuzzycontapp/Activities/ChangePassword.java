@@ -53,13 +53,12 @@ public class ChangePassword extends AppCompatActivity {
                             while (!input.ready()) ;
                             String s = input.readLine();
                             if ((new JSONObject(s).get("Status")).equals("OK")) {
+
                                 Intent intent = new Intent(ChangePassword.this, MainActivity.class);
                                 startActivity(intent);
                             }
                         }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
+                    } catch (IOException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
