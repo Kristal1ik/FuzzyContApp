@@ -133,7 +133,7 @@ The full version of the documentation you can find [here](https://disk.yandex.ru
 - [Python 3.10.12](https://docs.python.org/3.10/index.html)
 - [Android Studio Dolphin (2021.3.1)](https://developer.android.com/studio/releases/past-releases/as-dolphin-release-notes)
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
-- [ScyPy (1.10.1)](https://docs.scipy.org/doc/scipy-1.10.1/index.html)
+- [SciPy (1.10.1)](https://docs.scipy.org/doc/scipy-1.10.1/index.html)
 - [Matplotlib (3.6.3)](https://matplotlib.org/3.6.3/index.html)
 - [MySQL](https://dev.mysql.com/doc/)
 
