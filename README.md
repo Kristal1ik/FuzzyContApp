@@ -26,7 +26,11 @@ The aim of the work is to develop an application for Android OS to simplify the 
 
 ## Documentation
 
-Documentation Here
+| Oprimization algorithm              | Description                                    |
+|----------------------|---------------------------------------------------------------|
+| `basin hopping` | A global optimization method used to solve optimization problems that have a complex energy surface. |
+| `genetic algorithm`         |An optimization method that uses ideas from evolutionary biology and genetics to solve problems.                                                |
+|`particle swarm algorithm` |An optimization method that simulates the behavior of a flock of particles in space to find optimal solutions in multidimensional problems.|
 
 ## Distribute
 
