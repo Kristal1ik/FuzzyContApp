@@ -11,7 +11,7 @@
     <img alt="Python" src="https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=white">
 </p>
 <h3 align="center">
-  Learn fuzzy logic on the example of the Maxwell's pendulum! [APK](https://github.com/Kristal1ik/FuzzyContApp/releases/tag/FuzzyLogic)
+  Learn fuzzy logic on the example of the Maxwell's pendulum! 
 </h3>
 <!-- ![<img src="assets/download.png"
       alt="Direct apk download"
@@ -25,21 +25,24 @@ The aim of the work is to develop an application for Android OS to simplify the 
 </p>
 
 ## Documentation
-
+> "Fuzzy logic is the art of finding beauty in uncertainty" — Lotfi A. Zadeh
+>
+To solve this problem, the theory of fuzzy sets is used, since it avoids a large number of calculations in fuzzy modeling problems.
 | Oprimization algorithm              | Description                                    |
 |----------------------|---------------------------------------------------------------|
 | `basin hopping` | A global optimization method used to solve optimization problems that have a complex energy surface. |
 | `genetic algorithm`         |An optimization method that uses ideas from evolutionary biology and genetics to solve problems.                                                |
 |`particle swarm algorithm` |An optimization method that simulates the behavior of a flock of particles in space to find optimal solutions in multidimensional problems.|
 
-## Distribute
+## Sources
 
-- [Service Name](Page Link)
-
+- [Java (JDK 11)](https://docs.oracle.com/en/java/javase/11/)
+- [Python 3.10.12](https://docs.python.org/3.10/index.html)
+- [Android Studio Dolphin (2021.3.1)](https://developer.android.com/studio/releases/past-releases/as-dolphin-release-notes)
 
 ## Developers
 
-- [Delevoper Name](GitHub Profile Link)
+- [Korobovtseva Olga](https://t.me/Kristall1k)
 
 ## License
 
