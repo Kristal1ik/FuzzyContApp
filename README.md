@@ -38,7 +38,7 @@ To solve this problem, the theory of fuzzy sets is used, since it avoids a large
 - <img alt="optim" src="assets/c_optim.png" width="50"> Drawing up your rule base using the presented global optimization algorithms in the application (all has a description).
 - <img alt="pend" src="assets/c_pend.png" width="50"> Control of the physical model of the Maxwell pendulum.
 - <img alt="pend_rules" src="assets/c_pend_rules.png" width="50"> The imposition of rules on the mathematical model of the Maxwell pendulum.
-
+- More information about the functionality and work of the physical model can find [here](https://disk.yandex.ru/client/disk/FuzzyContApp?idApp=client&dialog=slider&idDialog=%2Fdisk%2FFuzzyContApp%2FDemo.MOV).
 ## Stack
 
 - [Java (JDK 11)](https://docs.oracle.com/en/java/javase/11/)
