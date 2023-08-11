@@ -40,9 +40,9 @@ To solve this problem, the theory of fuzzy sets is used, since it avoids a large
 - [Python 3.10.12](https://docs.python.org/3.10/index.html)
 - [Android Studio Dolphin (2021.3.1)](https://developer.android.com/studio/releases/past-releases/as-dolphin-release-notes)
 
-## Developers
+## Developer
 
 - [Korobovtseva Olga](https://t.me/Kristall1k)
 
 ## License
-
+Project GoTo-Apps.SwipeDetector is distributed under the MIT license.
