@@ -7,7 +7,7 @@
 <p align="center">
     <img alt="Android" src="https://img.shields.io/badge/Android-C2C3F3?style=for-the-badge&logo=android&logoColor=black">
     <img alt="Java" src="https://img.shields.io/badge/JAVA-9B9BB6?style=for-the-badge&logo=intellijidea&logoColor=F0F0F0">
-    <img alt="Arduino" src="https://img.shields.io/badge/anduino-DAEBF8?style=for-the-badge&logo=arduino&logoColor=black">
+    <img alt="Arduino" src="https://img.shields.io/badge/arduino-DAEBF8?style=for-the-badge&logo=arduino&logoColor=black">
     <img alt="Python" src="https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=white">
 </p>
 <h3 align="center">
