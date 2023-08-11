@@ -18,8 +18,8 @@
       height="80">](https://github.com/k0shk0sh/FastHub/releases/latest) -->
 
 ## About
-
-The aim of the work is to develop an application for Android OS to simplify the understanding of the principles of `fuzzy logic` and `algorithms of global optimization` by developing a software package with a fuzzy controller that will supply such control actions to the   `Maxwell's pendulum` so that it is within certain boundaries and the physical model of the pendulum.
+The need for `fuzzy logic` arises in many areas, including `artificial intelligence`, `control` and `decision-making`. Fuzziness is an integral part of the real world, so fuzzy logic is actively used to develop `intelligent systems` capable of processing and analyzing fuzzy information. The main problem of this topic is its **inaccessibility**. The fact is that the theory of fuzzy sets is studied at the senior courses of universities, and the materials presented in the public domain include terms, formulas and designations that are incomprehensible to **schoolchildren**. This project is aimed at **popularizing** fuzzy logic by writing an application for `Android OS`, as well as developing a real prototype of the `Maxwell pendulum` to demonstrate the operation of a controller running on fuzzy rules.
+Next, the functionality that allows the user to study the proposed topic will be described.
 <p align="center">
     <img alt="Pendulum" src="assets/pend.gif" width="250">
 </p>
@@ -34,7 +34,7 @@ To solve this problem, the theory of fuzzy sets is used, since it avoids a large
 | `genetic algorithm`         |An optimization method that uses ideas from evolutionary biology and genetics to solve problems.                                                |
 |`particle swarm algorithm` |An optimization method that simulates the behavior of a flock of particles in space to find optimal solutions in multidimensional problems.|
 
-## Sources
+## Stack
 
 - [Java (JDK 11)](https://docs.oracle.com/en/java/javase/11/)
 - [Python 3.10.12](https://docs.python.org/3.10/index.html)
