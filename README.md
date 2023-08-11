@@ -11,7 +11,7 @@
     <img alt="Python" src="https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=white">
 </p>
 <h3 align="center">
-  Learn fuzzy logic on the example of the Maxwell's pendulum! 
+  Learn fuzzy logic with the example of the Maxwell's pendulum! 
 </h3>
 <!-- ![<img src="assets/download.png"
       alt="Direct apk download"
