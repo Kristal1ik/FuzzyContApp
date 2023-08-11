@@ -47,9 +47,9 @@ The figure shows the notation:
 
 In the author 's code , the rule looks like this:
 ```python
-x1=Trapezoid([0.09,0.14,0.156,0.175,1]).trapezoid();
-v1=Trapezoid([0.280,0.351,0.466,0.616,1]).trapezoid();
-w1=Trapezoid([6.00,9.550,13.550,16.350,1]).trapezoid().
+x1 = Trapezoid([0.09,0.14,0.156,0.175,1]).trapezoid();
+v1 = Trapezoid([0.280,0.351,0.466,0.616,1]).trapezoid();
+w1 = Trapezoid([6.00,9.550,13.550,16.350,1]).trapezoid().
 ```
 In the example above, there is a `Trapezoid` class that has a `trapezoid()` method that fuzzifies a number.
 
