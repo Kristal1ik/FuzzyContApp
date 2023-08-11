@@ -32,9 +32,11 @@ Next, the functionality that allows the user to study the proposed topic will be
 ## Documentation
 > "Fuzzy logic is the art of finding beauty in uncertainty" — Lotfi A. Zadeh
 >
+
 <h2>
   Rule base
 </h2>
+
 To solve this problem, the theory of fuzzy sets is used, since it avoids a large number of calculations in fuzzy modeling problems.
 The `rule base` consists of several fuzzy rules in which each gasified value of the pendulum **position** and **velocity** corresponds to a fuzzy number. The rule base may look like this:
 
@@ -116,4 +118,4 @@ $$\mu=\begin{equation*}
 - [Korobovtseva Olga](https://t.me/Kristall1k)
 
 ## License
-Project GoTo-Apps.SwipeDetector is distributed under the MIT license.
+Project FyzzyContApp is distributed under the MIT license.
