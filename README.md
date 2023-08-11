@@ -28,6 +28,44 @@ Next, the functionality that allows the user to study the proposed topic will be
 > "Fuzzy logic is the art of finding beauty in uncertainty" — Lotfi A. Zadeh
 >
 To solve this problem, the theory of fuzzy sets is used, since it avoids a large number of calculations in fuzzy modeling problems.
+The `rule base` consists of several fuzzy rules in which each gasified value of the pendulum **position** and **velocity** corresponds to a fuzzy number. The rule base may look like this:
+
+$$RULE_1: \;IF\; «X_1» \;AND\; «V_1» \;THEN\; «Conclusion_1» \;(F1)$$
+
+$$RULE_2: \;IF\; «X_2» \;AND\; «V_2» \;THEN\; «Conclusion_2» \;(F2)$$
+
+<p align="center">
+    <img alt="Graphical representation of the rule base" src="assets/rules.jpg" width="400">
+</p>
+The figure shows the notation:
+
+- x is the position of the pendulum;
+  
+- v is the speed of the pendulum;
+  
+- w – conclusion.
+
+In the author 's code , the rule looks like this:
+```python
+x1=Trapezoid([0.09,0.14,0.156,0.175,1]).trapezoid();
+v1=Trapezoid([0.280,0.351,0.466,0.616,1]).trapezoid();
+w1=Trapezoid([6.00,9.550,13.550,16.350,1]).trapezoid().
+```
+In the example above, there is a `Trapezoid` class that has a `trapezoid()` method that fuzzifies a number.
+
+$$\mu=\begin{equation*}
+ \begin{cases}
+   1-\frac{b-x}{b-a}, a\le x\le b
+   \\
+   1, b\le x\le c
+   \\
+   1-\frac{x-c}{d-c}, c\le x\le d
+   \\
+   0, else
+.
+ \end{cases}
+\end{equation*}$$
+
 | Oprimization algorithm              | Description                                    |
 |----------------------|---------------------------------------------------------------|
 | `basin hopping` | A global optimization method used to solve optimization problems that have a complex energy surface. |
@@ -39,6 +77,12 @@ To solve this problem, the theory of fuzzy sets is used, since it avoids a large
 - <img alt="pend" src="assets/c_pend.png" width="50"> Control of the physical model of the Maxwell pendulum.
 - <img alt="pend_rules" src="assets/c_pend_rules.png" width="50"> The imposition of rules on the mathematical model of the Maxwell pendulum.
 - More information about the functionality and work of the physical model can find [here](https://disk.yandex.ru/client/disk/FuzzyContApp?idApp=client&dialog=slider&idDialog=%2Fdisk%2FFuzzyContApp%2FDemo.MOV).
+
+## Screenshots
+<p align="center">
+<img alt="pend" src="assets/main.jpg" width="100">  <img alt="pend" src="assets/1.jpg" width="100"> <img alt="pend" src="assets/2.jpg" width="100"> <img alt="pend" src="assets/3.jpg" width="100">
+</p>
+
 ## Stack
 
 - [Java (JDK 11)](https://docs.oracle.com/en/java/javase/11/)
