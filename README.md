@@ -10,8 +10,13 @@
     <img alt="Arduino" src="https://img.shields.io/badge/arduino-DAEBF8?style=for-the-badge&logo=arduino&logoColor=black">
     <img alt="Python" src="https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=white">
 </p>
+
+
 <h3 align="center">
   Learn fuzzy logic with the example of the Maxwell's pendulum! 
+      
+[<img src="https://raw.githubusercontent.com/mueller-ma/android-common/main/assets/direct-apk-download.png" width="300">](https://github.com/Kristal1ik/FuzzyContApp/releases/tag/FuzzyLogic)
+
 </h3>
 <!-- ![<img src="assets/download.png"
       alt="Direct apk download"
@@ -27,6 +32,9 @@ Next, the functionality that allows the user to study the proposed topic will be
 ## Documentation
 > "Fuzzy logic is the art of finding beauty in uncertainty" — Lotfi A. Zadeh
 >
+<h2>
+  Rule base
+</h2>
 To solve this problem, the theory of fuzzy sets is used, since it avoids a large number of calculations in fuzzy modeling problems.
 The `rule base` consists of several fuzzy rules in which each gasified value of the pendulum **position** and **velocity** corresponds to a fuzzy number. The rule base may look like this:
 
@@ -53,6 +61,12 @@ w1 = Trapezoid([6.00,9.550,13.550,16.350,1]).trapezoid().
 ```
 In the example above, there is a `Trapezoid` class that has a `trapezoid()` method that fuzzifies a number.
 
+<h2>
+  Accessory function(μ)
+</h2>
+
+`Fuzzification` is the process of translating input data into fuzzy data by finding the **degree** of belonging of a measurement to a fuzzy set. As input data, we get the `position` of the model (x) and the `velocity` (v). The trapezoidal membership function is given by four numbers and calculated according to the expression:
+
 $$\mu=\begin{equation*}
  \begin{cases}
    1-\frac{b-x}{b-a}, a\le x\le b
@@ -65,6 +79,10 @@ $$\mu=\begin{equation*}
 .
  \end{cases}
 \end{equation*}$$
+
+<h2>
+  Optimization
+</h2>
 
 | Oprimization algorithm              | Description                                    |
 |----------------------|---------------------------------------------------------------|
@@ -88,6 +106,10 @@ $$\mu=\begin{equation*}
 - [Java (JDK 11)](https://docs.oracle.com/en/java/javase/11/)
 - [Python 3.10.12](https://docs.python.org/3.10/index.html)
 - [Android Studio Dolphin (2021.3.1)](https://developer.android.com/studio/releases/past-releases/as-dolphin-release-notes)
+- [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+- [ScyPy (1.10.1)](https://docs.scipy.org/doc/scipy-1.10.1/index.html)
+- [Matplotlib (3.6.3)](https://matplotlib.org/3.6.3/index.html)
+- [MySQL](https://dev.mysql.com/doc/)
 
 ## Developer
 
