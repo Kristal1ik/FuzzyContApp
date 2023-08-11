@@ -81,18 +81,46 @@ $$\mu=\begin{equation*}
  \end{cases}
 \end{equation*}$$
 
+<h2>
+  Optimization
+</h2>
 
 | Oprimization algorithm              | Description                                    |
 |----------------------|---------------------------------------------------------------|
 | `basin hopping` | A global optimization method used to solve optimization problems that have a complex energy surface. |
 | `genetic algorithm`         |An optimization method that uses ideas from evolutionary biology and genetics to solve problems.                                                |
 |`particle swarm algorithm` |An optimization method that simulates the behavior of a flock of particles in space to find optimal solutions in multidimensional problems.|
+
+
+<h2>
+  Behavior of the mathematical model
+</h2>
+
+This function gets the `position`, `speed` and `acceleration` from a given time, returns `new values` by certain transformations.
+
+```python
+  def f(x, v, w):
+    a = (m * r * r * (g - w)) / (0.5 * (m * R * R + maxis * r * r) + (m + maxis) * r * r)
+    if (x == R and v < 0) or (x == l and v > 0):
+        v = -v * (1 - k)
+    xnew = x + v * dt + 0.5 * dt ** 2 * a
+    vnew = v + a * dt
+    if xnew > l:
+        xnew = l
+    if xnew < R:
+        xnew = R
+    return xnew, vnew
+```
+The full version of the documentation you can find [here](https://disk.yandex.ru/d/bcef3xaBscWD3A).
+
 ## Functionality
 - <img alt="acc2" src="assets/c_acc.png" width="50"> Сontrol of the pendulum using the built-in accelerometer with the ability to change the parameters of the model.
 - <img alt="optim" src="assets/c_optim.png" width="50"> Drawing up your rule base using the presented global optimization algorithms in the application (all has a description).
 - <img alt="pend" src="assets/c_pend.png" width="50"> Control of the physical model of the Maxwell pendulum.
 - <img alt="pend_rules" src="assets/c_pend_rules.png" width="50"> The imposition of rules on the mathematical model of the Maxwell pendulum.
-- More information about the functionality and work of the physical model can find [here](https://disk.yandex.ru/client/disk/FuzzyContApp?idApp=client&dialog=slider&idDialog=%2Fdisk%2FFuzzyContApp%2FDemo.MOV).
+- More information about the functionality and work of the physical model you can find [here](https://disk.yandex.ru/client/disk/FuzzyContApp?idApp=client&dialog=slider&idDialog=%2Fdisk%2FFuzzyContApp%2FDemo.MOV).
+
+
 
 ## Screenshots
 <p align="center">
