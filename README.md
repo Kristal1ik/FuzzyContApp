@@ -2,7 +2,7 @@
 <strong>FuzzyContApp 🪀</strong>
 </h1>
 <p align="center">
-      <img src="https://sun9-80.userapi.com/impg/yzdz9iAjtutCNhu5o80h7Lk-shYIDGYImsTuIQ/clWEcr_g26M.jpg?size=512x512&quality=96&sign=cb62b9a2b22dc28928e72498ed1b3153&type=album" width="250">     <img alt="Pendulum" src="assets/phys.gif" width="140"> 
+      <img src="https://sun9-80.userapi.com/impg/yzdz9iAjtutCNhu5o80h7Lk-shYIDGYImsTuIQ/clWEcr_g26M.jpg?size=512x512&quality=96&sign=cb62b9a2b22dc28928e72498ed1b3153&type=album" width="250">     <img alt="Pendulum" src="assets/phys.gif" width="141"> 
 
 </p>
 <p align="center">
@@ -81,7 +81,6 @@ $$\mu=\begin{equation*}
  \end{cases}
 \end{equation*}$$
 
-c
 
 | Oprimization algorithm              | Description                                    |
 |----------------------|---------------------------------------------------------------|
@@ -94,14 +93,6 @@ c
 - <img alt="pend" src="assets/c_pend.png" width="50"> Control of the physical model of the Maxwell pendulum.
 - <img alt="pend_rules" src="assets/c_pend_rules.png" width="50"> The imposition of rules on the mathematical model of the Maxwell pendulum.
 - More information about the functionality and work of the physical model can find [here](https://disk.yandex.ru/client/disk/FuzzyContApp?idApp=client&dialog=slider&idDialog=%2Fdisk%2FFuzzyContApp%2FDemo.MOV).
-  
-<h2>
-  Physical model
-</h2>
-
-<p align="center">
-    <img alt="Pendulum" src="assets/phys.gif" width="150"> 
-</p>
 
 ## Screenshots
 <p align="center">
