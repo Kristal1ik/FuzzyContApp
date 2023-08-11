@@ -18,9 +18,7 @@
 [<img src="https://raw.githubusercontent.com/mueller-ma/android-common/main/assets/direct-apk-download.png" width="300">](https://github.com/Kristal1ik/FuzzyContApp/releases/tag/FuzzyLogic)
 
 </h3>
-<!-- ![<img src="assets/download.png"
-      alt="Direct apk download"
-      height="80">](https://github.com/k0shk0sh/FastHub/releases/latest) -->
+
 
 ## About
 The need for `fuzzy logic` arises in many areas, including `artificial intelligence`, `control` and `decision-making`. Fuzziness is an integral part of the real world, so fuzzy logic is actively used to develop `intelligent systems` capable of processing and analyzing fuzzy information. The main problem of this topic is its **inaccessibility**. The fact is that the theory of fuzzy sets is studied at the senior courses of universities, and the materials presented in the public domain include terms, formulas and designations that are incomprehensible to **schoolchildren**. This project is aimed at **popularizing** fuzzy logic by writing an application for `Android OS`, as well as developing a real prototype of the `Maxwell pendulum` to demonstrate the operation of a controller running on fuzzy rules.
@@ -82,9 +80,7 @@ $$\mu=\begin{equation*}
  \end{cases}
 \end{equation*}$$
 
-<h2>
-  Optimization
-</h2>
+c
 
 | Oprimization algorithm              | Description                                    |
 |----------------------|---------------------------------------------------------------|
@@ -97,6 +93,14 @@ $$\mu=\begin{equation*}
 - <img alt="pend" src="assets/c_pend.png" width="50"> Control of the physical model of the Maxwell pendulum.
 - <img alt="pend_rules" src="assets/c_pend_rules.png" width="50"> The imposition of rules on the mathematical model of the Maxwell pendulum.
 - More information about the functionality and work of the physical model can find [here](https://disk.yandex.ru/client/disk/FuzzyContApp?idApp=client&dialog=slider&idDialog=%2Fdisk%2FFuzzyContApp%2FDemo.MOV).
+  
+<h2>
+  Physical model
+</h2>
+
+<p align="center">
+    <img alt="Pendulum" src="assets/phys.gif" width="150"> 
+</p>
 
 ## Screenshots
 <p align="center">
