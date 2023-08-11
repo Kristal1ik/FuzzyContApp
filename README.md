@@ -2,7 +2,8 @@
 <strong>FuzzyContApp 🪀</strong>
 </h1>
 <p align="center">
-      <img src="https://sun9-80.userapi.com/impg/yzdz9iAjtutCNhu5o80h7Lk-shYIDGYImsTuIQ/clWEcr_g26M.jpg?size=512x512&quality=96&sign=cb62b9a2b22dc28928e72498ed1b3153&type=album" width="250">
+      <img src="https://sun9-80.userapi.com/impg/yzdz9iAjtutCNhu5o80h7Lk-shYIDGYImsTuIQ/clWEcr_g26M.jpg?size=512x512&quality=96&sign=cb62b9a2b22dc28928e72498ed1b3153&type=album" width="250">     <img alt="Pendulum" src="assets/phys.gif" width="140"> 
+
 </p>
 <p align="center">
     <img alt="Android" src="https://img.shields.io/badge/Android-C2C3F3?style=for-the-badge&logo=android&logoColor=black">
