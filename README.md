@@ -33,6 +33,11 @@ To solve this problem, the theory of fuzzy sets is used, since it avoids a large
 | `basin hopping` | A global optimization method used to solve optimization problems that have a complex energy surface. |
 | `genetic algorithm`         |An optimization method that uses ideas from evolutionary biology and genetics to solve problems.                                                |
 |`particle swarm algorithm` |An optimization method that simulates the behavior of a flock of particles in space to find optimal solutions in multidimensional problems.|
+## Functionality
+- <img alt="acc2" src="assets/c_acc.png" width="50"> Сontrol of the pendulum using the built-in accelerometer with the ability to change the parameters of the model.
+- <img alt="optim" src="assets/c_optim.png" width="50"> Drawing up your rule base using the presented global optimization algorithms in the application (all has a description).
+- <img alt="pend" src="assets/c_pend.png" width="50"> Control of the physical model of the Maxwell pendulum.
+- <img alt="pend_rules" src="assets/c_pend_rules.png" width="50"> The imposition of rules on the mathematical model of the Maxwell pendulum.
 
 ## Stack
 
