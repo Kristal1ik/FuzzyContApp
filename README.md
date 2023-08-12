@@ -142,4 +142,4 @@ The full version of the documentation you can find [here](https://disk.yandex.ru
 - [Korobovtseva Olga](https://t.me/Kristall1k)
 
 ## License
-Project FyzzyContApp is distributed under the MIT license.
+Project FuzzyContApp is distributed under the MIT license.
